@@ -9,7 +9,6 @@ A django blog app with a number of features needed for a standard blog platform.
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Status](#status)
-* [Inspiration](#inspiration)
 * [Contact](#contact)
 * [License](#license)
 * [Contributing](#contributing)
@@ -154,13 +153,13 @@ Project is: _in progress_
 Created by [Williano](https://williano.github.io/) - feel free to contact me!
 
 ## License
->You can check out the full license [here](https://github.com/Williano/Bona-Blog/blob/master/LICENSE.md)
+>You can check out the full license [here](https://github.com/Williano/django-bona-blog/blob/master/LICENSE)
 
 This project is licensed under the terms of the **MIT** license.
 
 ## Contributing
 
-1. Fork it (<https://github.com/Williano/Bona-Blog.git>)
+1. Fork it (<https://github.com/Williano/django-bona-blog.git>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
