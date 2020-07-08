@@ -135,10 +135,10 @@ To run this app, you will need to follow these 3 steps:
 ##### b. Add  ```blog``` to ```INSTALLED_APPS``` in ```settings.py``` for your Django project:
 
 ```
-INSTALLED_APPS = (
-    ...
-    'blog.apps.BlogConfig',
-)
+    INSTALLED_APPS = (
+        ...
+        'blog.apps.BlogConfig',
+    )
 ```
 
 ##### c. Add ``blog.urls`` to ``urls.py`` of your project:
@@ -165,13 +165,38 @@ INSTALLED_APPS = (
 
 ##### e. Create blog database tables
  ```
- $ python manage.py migrate blog
+    $ python manage.py migrate blog
  ```
  
+ ##### f. Add ```dashboard``` configuration to your project ```settings.py```:
+ 
+ ```
+    # Account Settings
+      LOGIN_URL = '/account/login/'
+      LOGIN_REDIRECT_URL = '/author/dashboard/'
+      LOGOUT_REDIRECT_URL = '/account/logout/'
+ ```
+ 
+ ##### g. Add ```email configuration``` for ```account signup and password reset```
+ 
+ ```
+    # Email Settings (Development)
+      EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+
+   # Email Settings (Production)
+     EMAIL_BACKEND = ''
+     EMAIL_HOST = ''
+     EMAIL_HOST_USER = ''
+     EMAIL_HOST_PASSWORD = ""
+     EMAIL_PORT = 587
+     EMAIL_USE_TLS = True
+ ```
   
 ##### Running Tests
    ```
-  $ python manage.py test blog.tests
+      $ python manage.py test blog.tests
   ```
 
 
