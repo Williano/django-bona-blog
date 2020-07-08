@@ -3,7 +3,7 @@
 </p>
 
 # django-bona-blog
-A Django blog app with a number of features needed for a standard blog platform.
+A Django blog app with features of a standard blogging platform.
 
 
 ## Table of contents
@@ -19,7 +19,7 @@ A Django blog app with a number of features needed for a standard blog platform.
 
 
 ## General info
-An Open-Source Django blogging app like [Medium](https://medium.com/) and [Real Python](https://realpython.com/). It has a number of [features](#features) needed for a standard blogging platform.
+An Open-Source Django blogging app like [Medium](https://medium.com/) and [Real Python](https://realpython.com/). It has [features](#features) of a standard blogging platform.
 
 ## Screenshots
 
