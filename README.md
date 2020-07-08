@@ -137,7 +137,7 @@ To run this app, you will need to follow these 3 steps:
 ```
 INSTALLED_APPS = (
     ...
-    'blog',
+    'blog.apps.BlogConfig',
 )
 ```
 
