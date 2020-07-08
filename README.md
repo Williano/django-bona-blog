@@ -58,20 +58,17 @@ Article Detail Page
 * WYSIWYG Editor
 * Author Login
 * Author Password Reset
-* Authors List
-* Author Articles List
+* API for Clients
 * Category List
 * Category Articles List
 * New Category Submission
 * Related Articles
 * Comments
-* Article Newsletter Subscribe
 * Articles Search
 * Article Social Media Share
 * Article Minute Read
 * Article Number of Words
 * Article Number of Views
-* Article Preview
 * Article Tags
 * Tag Related Articles
 * Markdown Support
@@ -86,7 +83,7 @@ Article Detail Page
 * Javascript
 * Jquery 
 * Ajax
-* Vuejs
+* PrismJS
 * Django 3
 * HTML5
 * CSS3 
