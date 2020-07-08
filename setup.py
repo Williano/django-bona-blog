@@ -15,7 +15,7 @@ setup(
     include_package_data=True,
     author='William Kpabitey Kwabla (fork author)',
     author_email='paawilly17@gmail.com',
-    description='A Django blog app with a number of features needed for a standard blog platform. '
+    description='A Django blog app with a number of features needed for a standard blog platform. ',
     long_description=README,
     long_description_content_type="text/markdown",
     license='MIT License',
@@ -51,5 +51,5 @@ setup(
         'djangorestframework',
     ],
     python_requires='>=3.5',
-    zip_safe=False
+    zip_safe=False,
 )
