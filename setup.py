@@ -1,30 +1,23 @@
-import os
-from codecs import open
-from setuptools import setup
-import metadata
+import pathlib
+from setuptools import find_packages, setup
 
-app_name = metadata.name
-version = metadata.version
-this_dir = os.path.dirname(os.path.abspath(__file__))
+# The directory containing this file
+HERE = pathlib.Path(__file__).parent
 
+# The text of the README file
+README = (HERE / "README.md").read_text()
 
-def read(filename):
-    with open(filename, encoding='utf-8') as fo:
-        return fo.read()
-
-
-long_description = read('README.rst') + '\n\n' + \
-                   read(os.path.join(this_dir, 'Changelog.rst'))
-
+# This call to setup() does all the work
 setup(
-    name='django-{0}'.format(app_name),
-    version=version,
-    packages=['tinymce'],
+    name='django-bona-blog,
+    version='1.0.0',
+    packages=find_packages(exclude=("tests",)),
     include_package_data=True,
     author='William Kpabitey Kwabla (fork author)',
     author_email='paawilly17@gmail.com',
     description='A Django blog app with a number of features needed for a standard blog platform. '
-    long_description=long_description,
+    long_description=README,
+    long_description_content_type="text/markdown",
     license='MIT License',
     keywords='django-blogging django django-app django-blog-app django-blog ',
     classifiers=[
