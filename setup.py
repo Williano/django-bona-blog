@@ -10,7 +10,7 @@ README = (HERE / "README.md").read_text()
 # This call to setup() does all the work
 setup(
     name='django-bona-blog',
-    version='1.0.0',
+    version='0.0.1',
     packages=find_packages(exclude=("tests",)),
     include_package_data=True,
     author='William Kpabitey Kwabla (fork author)',
