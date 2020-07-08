@@ -10,12 +10,12 @@ README = (HERE / "README.md").read_text()
 # This call to setup() does all the work
 setup(
     name='django-bona-blog',
-    version='0.0.1',
+    version='v1.0.0',
     packages=find_packages(exclude=("tests",)),
     include_package_data=True,
     author='William Kpabitey Kwabla (fork author)',
     author_email='paawilly17@gmail.com',
-    description='A Django blog app with a number of features needed for a standard blog platform. ',
+    description='A Django blog app with features of a standard blogging platform.',
     long_description=README,
     long_description_content_type="text/markdown",
     license='MIT License',
