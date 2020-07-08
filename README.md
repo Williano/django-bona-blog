@@ -126,14 +126,38 @@ To run this app, you will need to follow these 3 steps:
        
       ```             
       
-##### b. Add package to install apps
+##### b. Add  ```blog``` to ```INSTALLED_APPS``` in ```settings.py``` for your Django project:
 
+```
+INSTALLED_APPS = (
+    ...
+    'blog',
+)
+```
 
+##### c. Add ``blog.urls`` to ``urls.py`` of your project:
 
-##### c. Add url to project urls
+```
+    urlpatterns = [
+      ...
+      path('blog/', include('blog.urls')),
+      ...
+  ]
+```
 
+##### d. Add configuration to serve static files in development to  ```urls.py``` of your project:
 
-##### d. Create blog database tables
+```
+  
+     from django.conf import settings
+    
+ 
+     if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+        
+```
+
+##### e. Create blog database tables
  ```
  $ python manage.py migrate blog
  ```
