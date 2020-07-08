@@ -52,11 +52,12 @@
 			<div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
 
 			<ul class="main-menu visible-on-click" id="main-menu">
-				<li><a href="{% url 'blog:authors_list' %}">Authors</a></li>
+{#				<li><a href="{% url 'blog:authors_list' %}">Authors</a></li>#}
 				<li><a href="{% url 'blog:categories_list' %}">Categories</a></li>
                 <li><a href="#">About</a></li>
                 {% if request.user.is_authenticated %}
                     <li><a href="{% url 'blog:dashboard_home' %}">Dashboard</a></li>
+                    <li><a href="{% url 'blog:logout' %}">Logout</a></li>
                 {% else %}
                     <li><a href="{% url 'blog:login' %}">Login</a></li>
                 {% endif %}
@@ -152,7 +153,7 @@
 {#							<li><a href="#">MUSIC</a></li>#}
 						</ul>
 						<ul>
-                            <li><a href="{% url 'blog:register' %}">Sign Up</a></li>
+{#                            <li><a href="{% url 'blog:register' %}">Sign Up</a></li>#}
 {#							<li><a href="#">DESIGN</a></li>#}
 {#							<li><a href="#">TRAVEL</a></li>#}
 						</ul>
