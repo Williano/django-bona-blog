@@ -153,13 +153,14 @@ To run this app, you will need to follow these 3 steps:
     )
 ```
 
-##### d. Add ``blog.urls`` to ``urls.py`` of your project:
+##### d. Add ``blog.urls, tinmyce.urls and api.urls`` to ``urls.py`` of your project:
 
 ```
     urlpatterns = [
       ...
+      path('tinymce/', include('tinymce.urls')),
       path('blog/', include('blog.urls')),
-      ...
+      path('api/v1/article/', include('blog.api.v1.routers.routers')), 
   ]
 ```
 
