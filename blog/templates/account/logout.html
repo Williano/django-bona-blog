@@ -1,0 +1,25 @@
+{% extends 'account/account_base.html' %}
+
+{% block title %}
+    Logout
+{% endblock title %}
+
+{% block content %}
+        <div class="container">
+
+        <div class="card shadow-sm">
+
+                <h4 class="card-header">Successful Logout</h4>
+
+                <div class="card-body">
+                        <div class="alert alert-success text-dark text-center">
+                            You have successfully logged out. <br>
+                            You may go ahead and Login again.
+                        </div>
+                        <a class="btn btn-info float-right"
+                           href="{% url 'blog:login' %}">Log In Here</a>
+                </div>
+            </div>
+    </div>
+
+{% endblock content %}

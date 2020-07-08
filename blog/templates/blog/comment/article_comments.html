@@ -1,0 +1,150 @@
+{% extends 'blog/blog_base.html' %}
+{% load static %}
+
+    <!-- Stylesheets -->
+	{% block stylesheet %}
+        {{ block.super }}
+	<link href="{% static 'blog/css/bona/comment.css' %}" rel="stylesheet">
+
+    {% endblock stylesheet %}
+
+{% block title %}
+    {{ article.title }}
+{% endblock title %}
+
+{% block content %}
+    <br><br>
+    	<section class="comment-section center-text">
+		<div class="container">
+        <p><b>SHOWING COMMENTS FOR: </b></p>
+            <div class="row">
+
+				<div class="col-lg-2 col-md-0"></div>
+
+				<div class="col-lg-8 col-md-12">
+
+                        <div class="comments-area text-left comment-shadow">
+                                    <div class="comment">
+
+                                        <div class="post-info">
+
+                                            <div class="middle-area">
+                                                <h3><a
+                                                        href="
+                                              {% url 'blog:article_detail' username=article.author.username|lower slug=article.slug %}">
+                                                    <b>{{ article.title }}</b></a>
+                                                </h3>
+                                            </div>
+
+                                            <div class="right-area">
+                                                <h6 class="reply-btn" ><b>COMMENTS ({{ article.comments.count }})</b></h6>
+                                            </div>
+
+                                        </div><!-- post-info -->
+
+                                        <p>By {{ article.author.username }}</p>
+
+                                    </div>
+
+                        </div>
+                </div>
+            </div>
+
+{#			<h5><b>POST COMMENTS</b></h5>#}
+			<div class="row">
+
+				<div class="col-lg-2 col-md-0"></div>
+
+				<div class="col-lg-8 col-md-12">
+{#					<div class="comment-form">#}
+{#						<form method="post" action="{% url 'blog:comment_create' article.slug %}">#}
+{#                            {% csrf_token %}#}
+{#							<div class="row">#}
+{#								<div class="col-sm-6">#}
+{#									{{ comment_form.name }}#}
+{#								</div><!-- col-sm-6 -->#}
+{#								<div class="col-sm-6">#}
+{#									{{ comment_form.email }}#}
+{#								</div><!-- col-sm-6 -->#}
+{##}
+{#								<div class="col-sm-12">#}
+{#                                    {{ comment_form.comment }}#}
+{#								</div><!-- col-sm-12 -->#}
+{#								<div class="col-sm-12">#}
+{#									<button class="submit-btn" type="submit" id="form-submit"><b>POST COMMENT</b></button>#}
+{#								</div><!-- col-sm-12 -->#}
+{##}
+{#							</div><!-- row -->#}
+{#						</form>#}
+{#					</div><!-- comment-form -->#}
+
+
+                    <h5><b>COMMENTS</b></h5>
+                    {% if comments %}
+					<div class="comments-area text-left">
+                        {% for comment in comments %}
+						<div class="comment">
+
+							<div class="post-info">
+
+								<div class="middle-area">
+									<b>{{ comment.name }}</b>
+									<h6 class="date">on {{ comment.date_created.date }} at {{ comment.date_created.time }}</h6>
+								</div>
+
+{#								<div class="right-area">#}
+{#									<h5 class="reply-btn" ><a href="#"><b>REPLY</b></a></h5>#}
+{#								</div>#}
+
+							</div><!-- post-info -->
+
+							<p>{{ comment.comment }}</p>
+
+						</div>
+                        {% endfor %}
+
+					</div><!-- commnets-area -->
+                    {% else %}
+                      <div class="alert alert-warning"><b>No Comments</b></div>
+                    {% endif %}
+
+                {# Pagination for article post #}
+            {% if is_paginated %}
+
+                {# Displays previous pages #}
+                {% if page_obj.has_previous %}
+                    <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                    <a class="btn btn-outline-info mb-4"
+                       href="?page={{ page_obj.previous_page_number }}">Previous
+                    </a>
+                {% endif %}
+
+                {# Displays current page #}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                 {% endfor %}
+
+                {# Displays next pages #}
+               {% if page_obj.has_next %}
+                    <a class="btn btn-outline-info mb-4"
+                       href="?page={{ page_obj.next_page_number }}">Next
+                    </a>
+                    <a class="btn btn-outline-info mb-4"
+                       href="?page={{ page_obj.paginator.num_pages }}">Last
+                    </a>
+                {% endif %}
+
+            {% endif %}
+
+				</div><!-- col-lg-8 col-md-12 -->
+
+
+			</div><!-- row -->
+
+		</div><!-- container -->
+	</section>
+{% endblock content %}

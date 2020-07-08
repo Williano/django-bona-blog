@@ -1,0 +1,155 @@
+/* Base */
+#content-wrapper {
+    background-color:#eff2f7 !important;
+}
+
+/* Profile Detail */
+
+  .border{
+    border-bottom:1px solid #4e73df !important;
+    margin-bottom:10px !important;
+  }
+
+  .image-section{
+    padding: 0px !important;
+  }
+  .image-section img{
+    width: 100% !important;
+    height:425px !important;
+    position: relative !important;
+    object-fit: cover;
+  }
+  .user-image{
+    position: absolute !important;
+    margin-top:-50px !important;
+  }
+  .user-left-part{
+    margin: 0px !important;
+  }
+  .user-image img{
+    width:100px !important;
+    height:100px !important;
+    object-fit: cover;
+  }
+  .user-profil-part{
+    padding-bottom:30px !important;
+    background-color:#eee !important;
+  }
+  .follow{
+    margin-top:70px !important;
+  }
+  .user-detail-row{
+    margin:0px !important;
+  }
+  .user-detail-section2 p{
+    font-size:12px !important;
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+  .user-detail-section2{
+    margin-top:10px !important;
+  }
+  .user-detail-section2 span{
+    color:#7CBBC3 !important;
+    font-size: 25px !important;
+  }
+  .user-detail-section2 small{
+    font-size:12px !important;
+    color:#D3A86A !important;
+  }
+  .profile-right-section{
+    padding: 20px 0px 10px 15px !important;
+    background-color: #FFFFFF !important;
+  }
+  .profile-right-section-row{
+    margin: 0px !important;
+  }
+  .profile-header-section1 h1{
+    font-size: 25px !important;
+    margin: 0px !important;
+  }
+  .profile-header-section1 h5{
+    color: #0062cc !important;
+  }
+  .req-btn{
+    height:30px !important;
+    font-size:12px !important;
+  }
+  .profile-tag{
+    padding: 10px !important;
+    border:1px solid #F6F6F6 !important;
+  }
+  .profile-tag p{
+    font-size: 12px !important;
+    color:black !important;
+  }
+  .profile-tag i{
+    color:#ADADAD !important;
+    font-size: 20px !important;
+  }
+  .image-right-part{
+    background-color: #eee !important;
+    margin: 0px !important;
+    padding: 5px !important;
+  }
+  .img-main-rightPart{
+    background-color : #FCFCFC !important;
+    margin-top: auto !important;
+  }
+  .image-right-detail{
+    padding: 0px !important;
+  }
+  .image-right-detail p{
+    font-size: 12px !important;
+  }
+  .image-right-detail a:hover{
+    text-decoration: none !important;
+  }
+  .image-right img{
+    width: 100% !important;
+  }
+  .image-right-detail-section2{
+    margin: 0px !important;
+  }
+  .image-right-detail-section2 p{
+    color:#38ACDF !important;
+    margin:0px !important;
+  }
+  .image-right-detail-section2 span{
+    color:#7F7F7F !important;
+  }
+
+  .nav-link{
+    font-size: 1.2em !important;
+  }
+
+/* Social Icons*/
+.social [class*="fab fa fa-"] {
+    background-color: #333;
+    border-radius: 30px;
+    color: #fff;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    margin: auto 3px;
+    width: 30px;
+    font-size: 15px;
+    text-align: center;
+}
+
+
+/* Update Profile*/
+.content {
+    padding: 15px 15px 10px 15px;
+}
+
+/* Select dropdown */
+.bootstrap-select>.dropdown-toggle {
+  border: 1px solid #d1d3e2 !important;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    color: #222f3e!important;
+    text-decoration: none!important;
+    background-color: white!important;
+}
