@@ -2,8 +2,15 @@
 <img src="https://user-images.githubusercontent.com/19711677/86859686-cd429700-c088-11ea-8f60-9c7879d7fcc9.PNG">
 </p>
 
-# django-bona-blog
+<h1 align="center">django-bona-blog</h1>
+
+<p align="center"> 
 A Django blog app with features of a standard blogging platform.
+</p>
+
+<p align="center">
+        <a href="https://pypi.org/project/django-bona-blog/"><img src="https://badge.fury.io/py/django-bona-blog.svg" alt="PyPI version" height="18"></a>
+</p>
 
 
 ## Table of contents
