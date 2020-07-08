@@ -1,3 +1,6 @@
 Django>=2.2
 Pillow
-
+django-tinymce4-lite
+django-filter
+django-taggit
+djangorestframework
