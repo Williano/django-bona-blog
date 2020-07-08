@@ -1,5 +1,9 @@
+<p align="center"> 
+<img src="https://user-images.githubusercontent.com/19711677/86859686-cd429700-c088-11ea-8f60-9c7879d7fcc9.PNG">
+</p>
+
 # django-bona-blog
-A django blog app with a number of features needed for a standard blog platform.
+A Django blog app with a number of features needed for a standard blog platform.
 
 
 ## Table of contents
@@ -15,7 +19,7 @@ A django blog app with a number of features needed for a standard blog platform.
 
 
 ## General info
-An Open-Source django blogging app like [Medium](https://medium.com/) and [Real Python](https://realpython.com/). It has a number of [features](#features) needed for a standard blogging platform.
+An Open-Source Django blogging app like [Medium](https://medium.com/) and [Real Python](https://realpython.com/). It has a number of [features](#features) needed for a standard blogging platform.
 
 ## Screenshots
 
