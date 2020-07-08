@@ -131,8 +131,20 @@ To run this app, you will need to follow these 3 steps:
           $ pipenv install django-bona-blog
        
       ```             
-      
-##### b. Add  ```blog``` to ```INSTALLED_APPS``` in ```settings.py``` for your Django project:
+
+##### b. Add ```django_filters, tinmyce, taggit``` and ```rest_framework``` to your ```INSTALLED_APPS``` in ```settings.py```:
+```
+    INSTALLED_APPS = (
+        ...
+            'django_filters',
+            'rest_framework',
+            'taggit',
+            'tinymce',
+    )
+```
+
+
+##### c. Add  ```blog``` to ```INSTALLED_APPS``` in ```settings.py``` for your Django project:
 
 ```
     INSTALLED_APPS = (
@@ -141,7 +153,7 @@ To run this app, you will need to follow these 3 steps:
     )
 ```
 
-##### c. Add ``blog.urls`` to ``urls.py`` of your project:
+##### d. Add ``blog.urls`` to ``urls.py`` of your project:
 
 ```
     urlpatterns = [
@@ -151,7 +163,7 @@ To run this app, you will need to follow these 3 steps:
   ]
 ```
 
-##### d. Add configuration to serve static files in development to  ```urls.py``` of your project:
+##### e. Add configuration to serve static files in development to  ```urls.py``` of your project:
 
 ```
   
@@ -163,12 +175,12 @@ To run this app, you will need to follow these 3 steps:
         
 ```
 
-##### e. Create blog database tables
+##### f. Create blog database tables
  ```
     $ python manage.py migrate blog
  ```
  
- ##### f. Add ```dashboard``` configuration to your project ```settings.py```:
+ ##### g. Add ```dashboard``` configuration to your project ```settings.py```:
  
  ```
     # Account Settings
@@ -177,7 +189,7 @@ To run this app, you will need to follow these 3 steps:
       LOGOUT_REDIRECT_URL = '/account/logout/'
  ```
  
- ##### g. Add ```email configuration``` for ```account signup and password reset```
+ ##### h. Add ```email configuration``` for ```account signup and password reset```
  
  ```
     # Email Settings (Development)
