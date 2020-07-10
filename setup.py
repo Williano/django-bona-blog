@@ -10,7 +10,7 @@ README = (HERE / "README.md").read_text()
 # This call to setup() does all the work
 setup(
     name='django-bona-blog',
-    version='1.0.0-alpha',
+    version='1.1.0',
     packages=find_packages(exclude=("tests",)),
     include_package_data=True,
     author='William Kpabitey Kwabla (fork author)',
@@ -32,7 +32,6 @@ setup(
         'Framework :: Django :: 3.0',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
@@ -50,6 +49,6 @@ setup(
         'django-taggit',
         'djangorestframework',
     ],
-    python_requires='>=3.5',
+    python_requires='>=3.6',
     zip_safe=False,
 )
