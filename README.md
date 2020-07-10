@@ -86,7 +86,7 @@ Article Detail Page
 
 
 ## Technologies
-* Python 3
+* Python 3.6
 * Javascript
 * Jquery 
 * Ajax
@@ -110,7 +110,7 @@ To run this app, you will need to follow these 3 steps:
 
   - Text Editor or IDE (eg. vscode, PyCharm)
 
-  - Python 3.5 +
+  - Python 3.6 +
   
   - Django 2.2+
 
