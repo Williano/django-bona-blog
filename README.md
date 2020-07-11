@@ -218,7 +218,7 @@ To run this app, you will need to follow these 3 steps:
 
 
 ## Status
-Project is: _in progress_
+Project is: _done_
 
 
 ## Contact
