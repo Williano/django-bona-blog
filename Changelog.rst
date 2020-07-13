@@ -1,10 +1,15 @@
 Changelog
 =========
 
+1.1.1
+-----
+- Fix 'six' dependency error
+- Update documentation
+
 1.1.0
 -----
 - Upgrade Python verison to 3.6
-- Upgrade documentation
+- Update documentation
 
 1.0.0-alpha
 -----
