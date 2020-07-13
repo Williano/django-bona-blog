@@ -3,10 +3,6 @@ Changelog
 
 1.1.1
 -----
-- Update documentation 
-
-1.1.1
------
 - Fix 'six' dependency error
 - Update documentation
 
