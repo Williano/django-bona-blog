@@ -160,11 +160,16 @@ To run this app, you will need to follow these 3 steps:
 ##### d. Add ``blog.urls, tinmyce.urls and api.urls`` to ``urls.py`` of your project:
 
 ```
+
+    from django.urls import include
+    from django.conf.urls.static import static
+    
+
     urlpatterns = [
       ...
       path('tinymce/', include('tinymce.urls')),
       path('blog/', include('blog.urls')),
-      path('api/v1/article/', include('blog.api.v1.routers.routers')), 
+      path('api/v1/', include('blog.api.v1.routers.routers')), 
   ]
 ```
 
@@ -210,7 +215,29 @@ To run this app, you will need to follow these 3 steps:
      EMAIL_PORT = 587
      EMAIL_USE_TLS = True
  ```
-  
+
+ ##### i. Add ```static files configuration``` for ```serving staticfiles```
+ 
+ ```
+    # Static files (CSS, JavaScript, Images)
+    # https://docs.djangoproject.com/en/3.0/howto/static-files/
+    
+      STATICFILES_DIRS = [ os.path.join(BASE_DIR, "blog/static"),]
+      STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+      STATICFILES_FINDERS = [
+            "django.contrib.staticfiles.finders.FileSystemFinder",
+            "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+         ]
+ ```
+ 
+  ##### j. Add ```media files configuration``` for ```serving media files```
+ 
+ ```
+        # Media files (User uploaded images)
+        MEDIA_URL = '/media/'
+        MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+ ```
+ 
 ##### Running Tests
    ```
       $ python manage.py test blog.tests
