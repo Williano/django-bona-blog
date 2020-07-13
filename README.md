@@ -238,6 +238,12 @@ To run this app, you will need to follow these 3 steps:
         MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
  ```
  
+   ##### k. Collect ```static files```
+ 
+ ```
+     $ python manage.py collectstatic
+ ```
+ 
 ##### Running Tests
    ```
       $ python manage.py test blog.tests
