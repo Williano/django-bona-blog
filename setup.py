@@ -43,6 +43,7 @@ setup(
     url='https://github.com/Williano/django-bona-blog',
     install_requires=[
         'Django>=2.2',
+        'six',
         'Pillow',
         'django-tinymce4-lite',
         'django-filter',
