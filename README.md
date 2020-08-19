@@ -15,6 +15,7 @@ A Django blog app with features of a standard blogging platform.
 
 ## Table of contents
 * [General info](#general-info)
+* [Standalone Project](#standalone-project)
 * [Screenshots](#screenshots)
 * [Features](#features)
 * [Technologies](#technologies)
@@ -27,6 +28,9 @@ A Django blog app with features of a standard blogging platform.
 
 ## General info
 An Open-Source Django blogging app like [Medium](https://medium.com/) and [Real Python](https://realpython.com/). It has [features](#features) of a standard blogging platform.
+
+## Standalone Project
+There is a standalone version of this django package. You can get it from its [GitHub Repo](https://github.com/Williano/Bona-Blog).
 
 ## Screenshots
 
