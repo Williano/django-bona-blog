@@ -105,7 +105,7 @@ Article Detail Page
 * Bootstrap 4
 * Ion Icons
 * Font awesome
-* TinyMCE 5
+* CKEditor
 * SQLite
 * PostgreSQL
 
@@ -144,19 +144,40 @@ To run this app, you will need to follow these 3 steps:
        
       ```             
 
-##### b. Add ```django_filters, tinmyce, taggit``` and ```rest_framework``` to your ```INSTALLED_APPS``` in ```settings.py```:
+##### b. Add ```django_filters, ckeditor, taggit, crispy_forms``` and ```rest_framework``` to your ```INSTALLED_APPS``` in ```settings.py```:
 ```
     INSTALLED_APPS = (
         ...
             'django_filters',
             'rest_framework',
             'taggit',
-            'tinymce',
+            'ckeditor',
+            'ckeditor_uploader',
+            'crispy_forms',
     )
 ```
 
+##### c. Add ```CKEditor Configuration``` to ```settings.py```:
+```
+    # CKEditor Settings
+    CKEDITOR_UPLOAD_PATH = 'uploads/'
+    CKEDITOR_IMAGE_BACKEND = "pillow"
 
-##### c. Add  ```blog``` to ```INSTALLED_APPS``` in ```settings.py``` for your Django project:
+    CKEDITOR_CONFIGS = {
+        'default':
+            {'toolbar': 'full',
+             'width': 'auto',
+             'extraPlugins': ','.join([
+                 'codesnippet',
+                 'youtube'
+             ]),
+             },
+    }
+```
+
+
+
+##### d. Add  ```blog``` to ```INSTALLED_APPS``` in ```settings.py``` for your Django project:
 
 ```
     INSTALLED_APPS = (
@@ -165,26 +186,25 @@ To run this app, you will need to follow these 3 steps:
     )
 ```
 
-##### d. Add ``blog.urls, tinmyce.urls and api.urls`` to ``urls.py`` of your project:
+##### e. Add ``blog.urls, tinmyce.urls and api.urls`` to ``urls.py`` of your project:
 
 ```
 
     from django.urls import include
-    from django.conf.urls.static import static
     
 
     urlpatterns = [
       ...
-      path('tinymce/', include('tinymce.urls')),
+      path('ckeditor/', include('ckeditor_uploader.urls')),
       path('blog/', include('blog.urls')),
       path('api/v1/', include('blog.api.v1.routers.routers')), 
   ]
 ```
 
-##### e. Add configuration to serve static files in development to  ```urls.py``` of your project:
+##### f. Add configuration to serve static files in development to  ```urls.py``` of your project:
 
 ```
-  
+     from django.conf.urls.static import static
      from django.conf import settings
     
  
@@ -193,12 +213,12 @@ To run this app, you will need to follow these 3 steps:
         
 ```
 
-##### f. Create blog database tables
+##### g. Create blog database tables
  ```
     $ python manage.py migrate blog
  ```
  
- ##### g. Add ```dashboard``` configuration to your project ```settings.py```:
+ ##### h. Add ```dashboard``` configuration to your project ```settings.py```:
  
  ```
     # Account Settings
@@ -207,7 +227,7 @@ To run this app, you will need to follow these 3 steps:
       LOGOUT_REDIRECT_URL = '/account/logout/'
  ```
  
- ##### h. Add ```email configuration``` for ```account signup and password reset```
+ ##### i. Add ```email configuration``` for ```account signup and password reset```
  
  ```
     # Email Settings (Development)
@@ -224,11 +244,10 @@ To run this app, you will need to follow these 3 steps:
      EMAIL_USE_TLS = True
  ```
 
- ##### i. Add ```static files configuration``` for ```serving staticfiles```
+ ##### j. Add ```static files configuration``` for ```serving staticfiles```
  
  ```
-    # Static files (CSS, JavaScript, Images)
-    # https://docs.djangoproject.com/en/3.0/howto/static-files/
+
     
       STATICFILES_DIRS = [ os.path.join(BASE_DIR, "blog/static"),]
       STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -238,7 +257,7 @@ To run this app, you will need to follow these 3 steps:
          ]
  ```
  
-  ##### j. Add ```media files configuration``` for ```serving media files```
+  ##### k. Add ```media files configuration``` for ```serving media files```
  
  ```
         # Media files (User uploaded images)
@@ -246,7 +265,7 @@ To run this app, you will need to follow these 3 steps:
         MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
  ```
  
-   ##### k. Collect ```static files```
+   ##### l. Collect ```static files```
  
  ```
      $ python manage.py collectstatic
