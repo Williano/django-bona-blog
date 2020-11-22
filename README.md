@@ -144,7 +144,7 @@ To run this app, you will need to follow these 3 steps:
        
       ```             
 
-##### b. Add ```django_filters, ckeditor, taggit, crispy_forms``` and ```rest_framework``` to your ```INSTALLED_APPS``` in ```settings.py```:
+##### b. Add ```django_filter, ckeditor, taggit, crispy_forms``` and ```rest_framework``` to your ```INSTALLED_APPS``` in ```settings.py```:
 ```
     INSTALLED_APPS = (
         ...
