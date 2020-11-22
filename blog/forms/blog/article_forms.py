@@ -2,6 +2,9 @@
 from django import forms
 from django.forms import TextInput, Select, FileInput
 
+# Third-party app imports
+from ckeditor.widgets import CKEditorWidget
+
 # Blog app imports
 from blog.models.article_models import Article
 from blog.models.category_models import Category
@@ -60,12 +63,12 @@ class ArticleCreateForm(forms.ModelForm):
                 'id': "image_credit"
             }),
 
-            'body': TextInput(attrs={
+            'body': forms.CharField(widget=CKEditorWidget(config_name="default", attrs={
                        "rows": 5, "cols": 20,
                        'id': 'content',
                        'name': "article_content",
                        'class': "form-control",
-                       }),
+                       })),
 
             'tags': TextInput(attrs={
                                      'name': "tags",
@@ -141,12 +144,12 @@ class ArticleUpdateForm(forms.ModelForm):
                                  "title": "Select Status"
                              }
                              ),
-            'body': TextInput(attrs={
-                'required': 'false',
-                'id': 'content',
-                'name': "body",
-                'class': "form-control",
-            }),
+            'body': forms.CharField(widget=CKEditorWidget(config_name="default", attrs={
+                       "rows": 5, "cols": 20,
+                       'id': 'content',
+                       'name': "article_content",
+                       'class': "form-control",
+                       })),
 
             'image': FileInput(attrs={
                 "class": "form-control clearablefileinput",
@@ -157,13 +160,4 @@ class ArticleUpdateForm(forms.ModelForm):
 
             ),
 
-            # 'tags': TextInput(attrs={
-            #     'name': "tags",
-            #     'class': "form-control",
-            #     'placeholder': "Enter Tags",
-            #     'id': "tags",
-            #     'data-role': "tagsinput",
-            #     "class":"form-control",
-            #     "value": "{% for tag in article.tags.all %}{{ tag }},{% endfor %}"
-            # }),
         }

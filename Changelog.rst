@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.1.2
+-----
+- Upgrade WYSIWYG editor from TinyMCE to CKEditor
+- Minor changes to dashboard user interface
+- Remove unused code snippets
+
 1.1.1
 -----
 - Fix 'six' dependency error

@@ -1,0 +1,100 @@
+{% extends 'blog/blog_base.html' %}
+{% load static %}
+
+{% block title %}
+    Authors
+{% endblock title %}
+
+
+{% block content %}
+    <div class="slider display-table center-text"
+             style="background-image: url({% static 'blog/images/authors_banner.png' %});
+                    background-size: contain;
+                 height: 400px; width: 100%;">
+		<h1 class="title display-table-cell cell-color"><b>AUTHORS</b></h1>
+	</div><!-- slider -->
+
+	<section class="blog-area section">
+		<div class="container">
+            {% if authors %}
+                <div class="row">
+                     {% for author in authors %}
+                    <div class="col-lg-3 col-sm-6">
+
+                        <div class="card h-100 hovercard">
+                            <div class="cardheader" style="background: url({{ author.profile.banner_image.url }});
+                                 background-size: cover; height: 135px; ">
+
+                            </div>
+                            <div class="avatar">
+                                <img alt="" src="{{ author.profile.image.url }}">
+                            </div>
+                            <div class="info">
+                                <div class="title">
+                                    <a href="{% url 'blog:author_articles' author.username %}">
+                                        {{ author.username }}
+                                    </a>
+                                </div>
+                                <div class="desc job-title">{{ author.profile.job_title }}</div>
+                                <div class="desc bio">{{ author.profile.bio }}</div>
+                                <div class="desc date-joined">Joined on {{ author.profile.user.date_joined|date:"M Y"}}</div>
+                            </div>
+                            <div class="bottom">
+                                <a class="btn btn-primary btn-twitter btn-sm footer-card" href="{{ author.profile.twitter_url }}">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a class="btn btn-danger btn-sm footer-card" rel="publisher"
+                                   href="{{ author.profile.instagram_url }}">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                                <a class="btn btn-primary btn-sm card-btn footer-card" rel="publisher"
+                                   href="{{ author.profile.facebook_url }}">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a class="btn btn-secondary btn-sm footer-card" rel="publisher" href="{{ author.profile.github_url }}">
+                                    <i class="fa fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                {% endfor %}
+			</div><!-- row -->
+            {% else %}
+               <center><div class="alert alert-info"><b>No Authors</b></div></center>
+            {% endif %}
+                {# Pagination for article post #}
+            {% if is_paginated %}
+
+                {# Displays previous pages #}
+                {% if page_obj.has_previous %}
+                    <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                    <a class="btn btn-outline-info mb-4"
+                       href="?page={{ page_obj.previous_page_number }}">Previous
+                    </a>
+                {% endif %}
+
+                {# Displays current page #}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                 {% endfor %}
+
+                {# Displays next pages #}
+               {% if page_obj.has_next %}
+                    <a class="btn btn-outline-info mb-4"
+                       href="?page={{ page_obj.next_page_number }}">Next
+                    </a>
+                    <a class="btn btn-outline-info mb-4"
+                       href="?page={{ page_obj.paginator.num_pages }}">Last
+                    </a>
+                {% endif %}
+
+            {% endif %}
+
+		</div><!-- container -->
+	</section><!-- section -->
+{% endblock %}

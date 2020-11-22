@@ -1,0 +1,55 @@
+{% extends 'account/account_base.html' %}
+{% load static %}
+
+{% block title %}
+    Register
+{% endblock title %}
+
+{% block content %}
+
+				<span class="login100-form-title p-b-41">
+					Register
+				</span>
+				<form action="{% url 'blog:register' %}" class="login100-form p-b-33 p-t-5"
+                      method="post" novalidate>
+                    {% csrf_token %}
+
+                    <div class="wrap-input100 validate-input" data-validate = "Enter Username">
+						{{ register_form.username }}
+						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+					</div>
+
+                    <div class="wrap-input100 validate-input" data-validate = "Enter Email">
+						{{ register_form.email }}
+						<span class="focus-input100" data-placeholder="&#xe818;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						{{ register_form.password1 }}
+						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
+					</div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+						{{ register_form.password2 }}
+						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
+					</div>
+
+					<div class="container-login100-form-btn m-t-32">
+						<button type="submit" class="login100-form-btn">
+							Register
+						</button>
+                    </div>
+                    <hr />
+                    <div class="text-center">
+                      <a class="small text-primary" href="{% url 'blog:login' %}"
+                        >Already Have an Account!</a>
+                    </div>
+                    <div class="text-center font-weight-bold">
+                      <a class="small text-info" href="{% url 'blog:home' %}">
+                          Home
+                      </a>
+                    </div>
+				</form>
+
+
+{% endblock content %}

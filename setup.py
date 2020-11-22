@@ -10,7 +10,7 @@ README = (HERE / "README.md").read_text()
 # This call to setup() does all the work
 setup(
     name='django-bona-blog',
-    version='1.1.1',
+    version='1.1.2',
     packages=find_packages(exclude=("tests",)),
     include_package_data=True,
     author='William Kpabitey Kwabla (fork author)',
@@ -45,10 +45,11 @@ setup(
         'Django>=2.2',
         'six',
         'Pillow',
-        'django-tinymce4-lite',
+        'django-ckeditor',
         'django-filter',
         'django-taggit',
         'djangorestframework',
+        'django-crispy-forms',
     ],
     python_requires='>=3.6',
     zip_safe=False,
