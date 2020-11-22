@@ -1,0 +1,118 @@
+{% extends 'blog/blog_base.html' %}
+
+{% block title %}
+    Home
+{% endblock title %}
+
+
+{% block content %}
+    {% if categories %}
+    <div class="main-slider">
+		<div class="swiper-container position-static" data-slide-effect="slide" data-autoheight="false"
+			data-swiper-speed="500" data-swiper-autoplay="5000" data-swiper-margin="0" data-swiper-slides-per-view="4"
+			data-swiper-breakpoints="true" data-swiper-loop="true" >
+			<div class="swiper-wrapper">
+                {% for category in categories %}
+				<div class="swiper-slide">
+					<a class="slider-category" href="{{ category.get_absolute_url }}">
+						<div class="category-image">
+                            <img src="{{ category.image.url }}"
+                                 class="category-image"
+                                 alt="Blog Image"
+                                 width="352" height="235"
+                             >
+                        </div>
+
+						<div class="category">
+							<div class="display-table center-text">
+								<div class="display-table-cell">
+									<h3><b>{{ category.name }}</b></h3>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div><!-- swiper-slide -->
+                {% endfor %}
+
+			</div><!-- swiper-wrapper -->
+		</div><!-- swiper-container -->
+
+	</div><!-- slider -->
+    {% else %}
+        <center><div class="alert alert-warning"><b>No Categories</b></div></center>
+    {% endif %}
+
+	<section class="blog-area section">
+		<div class="container infinite-container">
+            {% if articles %}
+			<div class="row infinite-item">
+                {% for article in articles %}
+				<div class="col-lg-4 col-md-6">
+					<div class="card h-100">
+						<div class="single-post post-style-1">
+
+							<div class="blog-image">
+                                <img src="{{ article.image.url }}"
+                                     alt="Blog Image"
+                                     width="330" height="220"
+                                >
+                            </div>
+
+							<a class="avatar" href="{% url 'blog:author_articles' article.author.username %}">
+                                <img class="profile-image" src="{{ article.author.profile.image.url }}" alt="Profile Image">
+                            </a>
+
+							<div class="blog-info">
+
+								<h4 class="title"><a href="{{ article.get_absolute_url }}"><b>{{ article.title }}</b></a></h4>
+
+								<ul class="post-footer">
+                                    <li><a><i class="ion-ios-clock"></i>{{ article.read_time }} min{{ article.read_time|pluralize }} read</a></li>
+									<li><i class="ion-chatbubbles"></i>{{ article.comments.count }}</li>
+									<li><a><i class="ion-eye"></i>{{ article.views }}</a></li>
+								</ul>
+
+							</div><!-- article-info -->
+						</div><!-- single-post -->
+					</div><!-- card -->
+				</div><!-- col-lg-4 col-md-6 -->
+                {% endfor %}
+			</div><!-- row -->
+            {% else %}
+                <div class="alert alert-warning"><b>No Articles</b></div>
+            {% endif %}
+        {# Pagination for article post #}
+            {% if is_paginated %}
+
+                {# Displays previous pages #}
+                {% if page_obj.has_previous %}
+                    <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                    <a class="btn btn-outline-info mb-4"
+                       href="?page={{ page_obj.previous_page_number }}">Previous
+                    </a>
+                {% endif %}
+
+                {# Displays current page #}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                 {% endfor %}
+
+                {# Displays next pages #}
+               {% if page_obj.has_next %}
+                    <a class="btn btn-outline-info mb-4"
+                       href="?page={{ page_obj.next_page_number }}">Next
+                    </a>
+                    <a class="btn btn-outline-info mb-4"
+                       href="?page={{ page_obj.paginator.num_pages }}">Last
+                    </a>
+                {% endif %}
+
+            {% endif %}
+		</div><!-- container -->
+	</section><!-- section -->
+
+{% endblock content %}

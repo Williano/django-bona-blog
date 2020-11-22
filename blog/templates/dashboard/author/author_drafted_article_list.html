@@ -48,7 +48,7 @@
                                                             <h3 class="title mb-1"><a
                                                                     href="{% url 'blog:dashboard_article_detail' slug=article.slug %}">{{ article.title }}</a></h3>
                                                             <div class="meta mb-1">
-                                                                <span class="date">Created {{ article.date_created|timesince|upto:','}} ago</span>
+                                                                <span class="date"><b>Created:</b> <i>{{ article.date_created|timesince|upto:','}} ago</i></span>
                                                                 <span class="time">{{ article.count_words }} word{{ article.count_words|pluralize }}</span>
                                                                 <span class="time">{{ article.read_time }} min{{ article.read_time|pluralize }} read</span>
                                                                 <span class="time">
@@ -65,7 +65,6 @@
                                                                 </div>
                                                               </span>
                                                             </div>
-                                                            <div class="intro">{{ article.body|safe|truncatewords:15 }}</div>
                                                             <a class="more-link" href="{% url 'blog:dashboard_article_detail' slug=article.slug %}">View details &rarr;</a>
                                                        <hr class="solid"><!-- Solid divider -->
                                                         </div><!--//media-body-->

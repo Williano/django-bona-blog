@@ -1,0 +1,83 @@
+{% extends 'dashboard/dashboard_base.html' %}
+{% load static %}
+{% load only_hours %}
+
+{% block title %}
+{{ article_title }}
+{% endblock title %}
+
+{% block stylesheets %}
+     {{ block.super }}
+        <link href="{% static 'dashboard/author/css/dashboard-article.css' %}" rel="stylesheet" />
+{% endblock stylesheets %}
+
+
+{% block content %}
+
+    <figure class="dash-article">
+	    <article class="blog-post px-3 py-5 p-md-5">
+		    <div class="container">
+			    <header class="blog-post-header">
+				    <h2 class="title mb-2">{{ article.title }}</h2>
+				    <div class="meta mb-3">
+                        {% if article.status == "PUBLISHED" %}
+                           <span class="date">Published {{ article.date_published.date|timesince|upto:','}} ago</span>
+                        {% else  %}
+                            <span class="date">Created {{ article.date_created.date|timesince|upto:',' }} ago</span>
+                        {% endif %}
+                        <span class="time">{{ article.count_words }} word{{ article.count_words|pluralize }}</span>
+                        <span class="time">{{ article.read_time }} min{{ article.read_time|pluralize }} read</span>
+                      <div class="float-right">
+                        <span class="date">
+                            <a href="mailto:?subject={{ article.title }}&amp;body=Check out this article {{ request.build_absolute_uri }}" target="_blank">
+                                <i class="fa fa-envelope h6"></i>
+                            </a>
+                        </span>
+                        <span class="date">
+                           <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}"  target="_blank">
+                                <i class="fab fa-linkedin h6"></i>
+                            </a>
+                        </span>
+                        <span class="date">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank">
+                                <i class="fab fa-facebook h6"></i>
+                            </a>
+                        </span>
+                        <span class="date">
+                            <a href="http://twitter.com/share?text=I just published {{ article.title }}. &url={{ request.build_absolute_uri }}" target="_blank">
+                                <i class="fab fa-twitter h6"></i></a>
+                        </span>
+                          <span class="date">
+                            <a href="https://api.whatsapp.com/send?text={{ request.build_absolute_uri }}" target="_blank">
+                                <i class="fab fa-whatsapp-square h6"></i></a>
+                        </span>
+                         <span class="date">
+                            <a href="https://telegram.me/share/url?url={{ request.build_absolute_uri }}&text={{ article.title }}" target="_blank">
+                                <i class="fab fa-telegram h6"></i></a>
+                        </span>
+                    </div>
+                    </div>
+
+			    </header>
+
+			    <div class="blog-post-body">
+				    <figure class="blog-banner">
+				        <img class="img-fluid" id="article-detail-image" src="{{ article.image.url }}" alt="image">
+				       {% if article.image_credit %}
+                           <figcaption class="mt-2 text-center image-caption">
+                            Image Credit: {{ article.image_credit}})
+                        </figcaption>
+                       {% endif %}
+                    </figure>
+				    <p>{{ article.body | safe }}</p>
+                </div>
+                <br>
+                <ul>
+                    {% for tag in article.tags.all %}
+                        <span class="badge badge-dark text-white">{{ tag.name }}</span>
+                    {% endfor %}
+                </ul>
+            </div>
+        </article>
+    </figure>
+{% endblock content %}

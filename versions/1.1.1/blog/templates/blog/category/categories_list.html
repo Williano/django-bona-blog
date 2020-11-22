@@ -1,0 +1,88 @@
+{% extends 'blog/blog_base.html' %}
+{% load static %}
+
+
+{% block title %}
+    Categories
+{% endblock title %}
+
+
+{% block content %}
+    <div class="slider display-table center-text"
+             style="background-image: url({% static 'blog/images/slider-1.jpg'%});
+                    background-size: contain;
+                 height: 400px; width: 100%;">
+		<h1 class="title display-table-cell cell-color"><b>CATEGORIES</b></h1>
+	</div><!-- slider -->
+
+	<section class="blog-area section">
+		<div class="container">
+            {% if categories %}
+			<div class="row">
+                {% for category in categories %}
+				<div class="col-lg-4 col-md-6">
+					<div class="card h-100">
+						<div class="single-post post-style-1">
+
+							<div class="blog-image">
+                                <img src="{{ category.image.url }}"
+                                     width="352" height="235"
+                                     alt="Category Image">
+                            </div>
+
+							<div class="blog-info">
+
+								<h4 class="title"><a href="{{ category.get_absolute_url }}"><b>{{ category.name }}</b></a></h4>
+
+								<ul class="post-footer item">
+									<center><li>
+                                        <i class="ion-ios-albums">
+                                        </i>{{ category.articles.count }}
+                                        </li>
+                                   </center>
+								</ul>
+
+							</div><!-- article-info -->
+						</div><!-- single-post -->
+					</div><!-- card -->
+				</div><!-- col-lg-4 col-md-6 -->
+                {% endfor %}
+			</div><!-- row -->
+            {% else %}
+               <center><div class="alert alert-info">No Categories</div></center>
+            {% endif %}
+                {# Pagination for article post #}
+            {% if is_paginated %}
+
+                {# Displays previous pages #}
+                {% if page_obj.has_previous %}
+                    <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                    <a class="btn btn-outline-info mb-4"
+                       href="?page={{ page_obj.previous_page_number }}">Previous
+                    </a>
+                {% endif %}
+
+                {# Displays current page #}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                 {% endfor %}
+
+                {# Displays next pages #}
+               {% if page_obj.has_next %}
+                    <a class="btn btn-outline-info mb-4"
+                       href="?page={{ page_obj.next_page_number }}">Next
+                    </a>
+                    <a class="btn btn-outline-info mb-4"
+                       href="?page={{ page_obj.paginator.num_pages }}">Last
+                    </a>
+                {% endif %}
+
+            {% endif %}
+
+		</div><!-- container -->
+	</section><!-- section -->
+{% endblock %}

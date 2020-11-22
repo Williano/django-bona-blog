@@ -1,0 +1,32 @@
+{% extends "account/account_base.html" %}
+
+{% block title %}
+    Account Activation Sent
+{% endblock title %}
+
+{% block content %}
+
+        <div class="container">
+
+        <div class="card shadow-sm">
+
+                <h4 class="card-header">Account Activation Sent</h4>
+
+                <div class="card-body">
+                        <div class="alert alert-success font-weight-bold text-dark text-center">
+
+                            Please confirm your email address to complete the registration.
+                            <br >
+                            We have sent you an email to confirm your email address.
+                            Please check your inbox and spam folder.
+                        </div>
+                    <hr />
+                    <div class="text-center font-weight-bold">
+                      <a class="small text-info" href="{% url 'blog:home' %}">
+                          Home
+                      </a>
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock content %}

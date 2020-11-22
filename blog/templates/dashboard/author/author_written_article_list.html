@@ -46,7 +46,7 @@
                                                 <div class="media-body">
                                                     <h3 class="title mb-1"><a href="{% url 'blog:dashboard_article_detail' slug=article.slug %}">{{ article.title }}</a></h3>
                                                     <div class="meta mb-1">
-                                                       <span class="date">Created {{ article.date_created|timesince|upto:',' }}</span>
+                                                        <span class="date"><b>Created</b>: <i>{{ article.date_created|timesince|upto:',' }} ago</i></span>
                                                         <span class="date">Status:
                                                             <b {% if article.status == "PUBLISHED"%} class="text-success" {% endif %}
                                                                {% if article.status == "DRAFTED" %} class="text-primary" {% endif %}
@@ -66,7 +66,6 @@
                                                         </div>
                                                       </span>
                                                     </div>
-                                                    <div class="intro">{{ article.body|safe|truncatewords:15 }}</div>
                                                     <a class="more-link" href="{% url 'blog:dashboard_article_detail' slug=article.slug %}">View details &rarr;</a>
                                                 <hr class="solid"><!-- Solid divider -->
                                                 </div><!--//media-body-->

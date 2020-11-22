@@ -1,0 +1,32 @@
+{% extends "dashboard/author/../../dashboard/dashboard_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Submit New Category
+{% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="content-section">
+            <div class="card shadow-sm w-100">
+
+              <h4 class="card-header">Submit A New Category</h4>
+
+               <div class="card-body">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+                {{ form|crispy }}
+
+            <div class="form-group float-right">
+                <button type="reset" class="btn btn-danger">Reset Form</button>
+                <button class="btn btn-primary" type="submit">SUBMIT</button>
+            </div>
+        </form>
+               </div>
+            </div>
+    </div>
+    </div>
+    <br /><br /><br /><br /> <br /><br /><br /><br /><br /><br />
+
+{% endblock content %}

@@ -7,7 +7,7 @@ from django.utils.text import slugify
 
 # Third party app imports
 from taggit.managers import TaggableManager
-from tinymce import HTMLField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Blog application imports.
 from blog.utils.blog_utils import count_words, read_time
@@ -36,7 +36,7 @@ class Article(models.Model):
     image = models.ImageField(default='article-default.jpg',
                               upload_to='article_pics')
     image_credit = models.CharField(max_length=250, null=True, blank=True)
-    body = HTMLField('Content')
+    body = RichTextUploadingField(blank=True)
     tags = TaggableManager(blank=True)
     date_published = models.DateTimeField(null=True, blank=True,
                                           default=timezone.now)
