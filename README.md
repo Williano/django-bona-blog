@@ -9,7 +9,7 @@ A Django blog app with features of a standard blogging platform.
 </p>
 
 
-<a href="https://pypi.org/project/django-bona-blog/"><img src="https://badge.fury.io/py/django-bona-blog.svg" alt="PyPI version" height="28"></a>
+<a href="https://badge.fury.io/py/django-bona-blog"><img src="https://badge.fury.io/py/django-bona-blog.svg" alt="PyPI version" height="28"></a>
 [![GitHub license](https://img.shields.io/github/license/Williano/Bona-Blog-Mobile?style=for-the-badge)](https://img.shields.io/github/license/Williano/Bona-Blog-Mobile?style=for-the-badge)
 [![GitHub stars](https://img.shields.io/github/stars/Williano/Bona-Blog-Mobile?style=for-the-badge)](https://img.shields.io/github/stars/Williano/Bona-Blog-Mobile?style=for-the-badge)
 [![GitHub forks](https://img.shields.io/github/forks/Williano/Bona-Blog-Mobile?style=for-the-badge)](https://img.shields.io/github/forks/Williano/Bona-Blog-Mobile?style=for-the-badge)
