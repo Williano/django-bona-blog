@@ -1,4 +1,12 @@
 {% extends 'blog/blog_base.html' %}
+{% load static %}
+'
+{% block stylesheet %}
+    {{ block.super }}
+     <link href="{% static 'blog/css/bona/detail-page.css' %}" rel="stylesheet" />
+
+{% endblock stylesheet %}
+
 
 {% block title %}
     {{ article.title }}
@@ -96,7 +104,7 @@
 						<div class="post-bottom-area">
 
                         <!-- article body -->
-							<p class="para">{{ article.body | safe }}
+                            <p class="para">{{ article.body | safe }}</p>
 
                         <!-- tags -->
 							<ul class="tags">
