@@ -201,7 +201,7 @@ class ArticleUpdateView(LoginRequiredMixin, View):
                 updated_article.save()
                 article_update_form.save_m2m()
 
-                messages.success(self.request, f"Article published successfully.")
+                messages.success(self.request, f"Article updated successfully.")
                 return redirect(to="blog:dashboard_article_detail", slug=updated_article.slug)
 
             self.context_object["article_update_form"] = article_update_form
