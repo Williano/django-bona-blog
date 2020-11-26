@@ -22,7 +22,7 @@ body{ font-size: 15px; font-family: 'Roboto', sans-serif; width: 100%; height: 1
 	-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; word-wrap: break-word; 
 	background: #EDF3F3; color: #000; }
 
-h1, h2, h3, h4, h5, h6, p, a, ul, span, li, img{ margin: 0; padding: 0; font-weight: 300; }
+h1, h2, h3, h4, h5, h6, p, a, span, img{ margin: 0; padding: 0; font-weight: 300; }
 
 h1,h2,h3,h4,h5,h6{ line-height: 1.5; }
 
@@ -42,7 +42,7 @@ button:focus, button:active, button:hover{ text-decoration: none; color: #498BF9
 
 b{ font-weight: 500; }
 
-img{ width: 100%; object-fit: cover;}
+img{ width: 100%; object-fit: cover; max-width: 100%; }
 
 .profile-image {
   width: 70px;
@@ -59,8 +59,7 @@ img{ width: 100%; object-fit: cover;}
  max-height: 70px;
  object-fit: cover;
 }
-
-li{ list-style: none; display: inline-block; }
+/*li{ list-style: none; display: inline-block; }*/
 
 span{ display: inline-block; }
 
@@ -120,9 +119,10 @@ header .logo{ float: left; height: 20px; margin: 20px 30px; }
 header .logo img{ height: 100%; width: auto; }
 
 
-header .main-menu{ display: inline-block; float: left; }
+header .main-menu{ display: inline-block; float: left; margin: 0!important;
+                          padding: 0;!important;}
 
-header .main-menu > li{ float: left; }
+header .main-menu > li{ float: left; list-style: none; display: inline-block; }
 
 header .main-menu > li > a{ height: 60px; line-height: 60px; padding: 0 25px; border-right: 1px solid #eee; }
 
@@ -200,7 +200,7 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0;
 
 .main-slider .swiper-button-next{ right: 20px; }
 
- 
+
 /* ---------------------------------
 5. SINGLE POST
 --------------------------------- */
@@ -277,6 +277,7 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0;
 
 .main-post ul.tags > li > a:hover{ background: none; }
 
+.main-post ul.tags > li{ margin: 0; padding: 0; list-style: none; display: inline-block; }
 
 /* ICONS */
 
@@ -293,6 +294,8 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0;
 
 .main-post ul.icons > li > a > i{ padding-left: 15px; font-size: 1.1em; opacity: .5; }
 
+.main-post .post-icons-area li{ list-style: none; display: inline-block; margin: 0!important;
+                          padding: 0;!important;}
 
 /* POST FOOTER */
 
@@ -303,7 +306,7 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0;
 
 
 /* ---------------------------------
-8. RECOMENEDED AREA
+8. RECOMMENDED AREA
 --------------------------------- */
 
 .recomended-area .row div[class^="col"] { margin-bottom: 30px; }
@@ -328,7 +331,8 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0;
     box-shadow: 0px 0px 10px rgba(0,0,0,.2);
 }
 
-.single-post .post-footer{ position: absolute; bottom: 0; left: 0; right: 0; text-align: center; }
+.single-post .post-footer{ position: absolute; bottom: 0; left: 0; right: 0; text-align: center; margin: 0!important;
+                          padding: 0;!important; }
 
 .item {
 	margin-bottom: 15px;
@@ -343,8 +347,6 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0;
 /*.single-post .post-footer > li > a{ line-height: 45px; width: 100%; }*/
 
 /*.single-post .post-footer i{ display: inline-block; margin-right: 10px; opacity: .6; font-size: 1.1em; }*/
-
-
 
 /* ---------------------------------
 9. POST COMMENT
@@ -403,7 +405,7 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0;
 10. FOOTER
 --------------------------------- */
 
-footer{ padding: 70px 0 30px; background: #fff; }
+footer{ padding: 70px 0 30px; background: #fff; max-width: 100%;   position: fixed; left: 0; bottom: 0; width: 100%;}
 
 footer .footer-section{ margin-bottom: 40px; }
 
@@ -411,6 +413,7 @@ footer .footer-section .title{ margin-bottom: 20px; }
 
 footer .footer-section ul > li{ margin-right: 10px; margin-top: 10px; }
 
+footer .footer-section li{ list-style: none; display: inline-block; }
 
 footer .copyright{ margin: 10px 0; }
 
