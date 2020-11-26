@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.1.3
+-----
+- Fix CSS errors
+- Remove footer
+- Fix responsive errors
+
 1.1.2
 -----
 - Upgrade WYSIWYG editor from TinyMCE to CKEditor
