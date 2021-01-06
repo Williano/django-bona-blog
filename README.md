@@ -2,6 +2,7 @@
 <img src="https://user-images.githubusercontent.com/19711677/86859686-cd429700-c088-11ea-8f60-9c7879d7fcc9.PNG">
 </p>
 
+
 <h1 align="center">django-bona-blog</h1>
 
 <p align="center"> 
