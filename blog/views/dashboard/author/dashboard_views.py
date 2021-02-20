@@ -62,7 +62,7 @@ class ArticleWriteView(LoginRequiredMixin, View):
 
     def post(self, request, *args, **kwargs):
 
-        article_create_form = ArticleCreateForm(request.POST)
+        article_create_form = ArticleCreateForm(request.POST, request.FILES)
 
         action = request.POST.get("action")
         article_status = request.POST["status"]
@@ -142,7 +142,7 @@ class ArticleUpdateView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
 
         old_article = get_object_or_404(Article, slug=self.kwargs.get("slug"))
-        article_update_form = ArticleCreateForm(request.POST, instance=old_article)
+        article_update_form = ArticleCreateForm(request.POST, request.FILES, instance=old_article)
 
         action = request.POST.get("action")
         article_status = request.POST["status"]
