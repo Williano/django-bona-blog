@@ -1,0 +1,138 @@
+.blog-list .item .title {
+	 font-size: 1.275rem;
+}
+ .blog-list .item .title a {
+	 color: #292929;
+}
+ .blog-list .item .title a:hover {
+	 color: #292929;
+}
+ .blog-list .item .post-thumb {
+	 max-width: 110px;
+	 border-radius: 2px;
+}
+ .blog-list .item .intro {
+	 font-size: 0.875rem;
+}
+ .blog-list .item .more-link {
+	 font-size: 0.8125rem;
+}
+ .meta {
+	 color: #8f8f8f;
+	 font-size: 0.8125rem;
+}
+ .meta span {
+	 display: inline-block;
+}
+ .meta span a {
+	 color: #8f8f8f;
+}
+ .meta span a:hover {
+	 color: #4f4f4f;
+}
+ .meta span:after {
+	 content: "";
+	 display: inline-block;
+	 width: 3px;
+	 height: 3px;
+	 border-radius: 50%;
+	 background: #8f8f8f;
+	 margin-left: 0.5rem;
+	 margin-right: 0.5rem;
+	 position: relative;
+	 top: -3px;
+}
+ .meta span:last-child:after {
+	 display: none;
+}
+ .blog-nav .nav-link {
+	 background: #5fcb71;
+	 color: #fff;
+	 font-size: 1rem;
+	 padding: 1rem;
+	 font-weight: bold;
+	 position: relative;
+}
+ .blog-nav .nav-link:hover {
+	 background: #3dba52;
+}
+ .blog-nav .nav-link-prev {
+	 border-right: 1px solid #309441;
+}
+ .blog-nav .arrow-prev {
+	 position: absolute;
+	 left: 1rem;
+	 top: 1.25rem;
+	 color: #fff;
+}
+ .blog-nav .arrow-next {
+	 position: absolute;
+	 right: 1rem;
+	 top: 1.25rem;
+	 color: #fff;
+}
+ .blog-post .title {
+	 font-weight: bold;
+	 font-size: 2rem;
+}
+ .blog-post .blog-post-body p, .blog-post .blog-post-body li {
+	 font-size: 1.125rem;
+	 line-height: 1.6;
+}
+ .blog-post .blog-post-body h1 {
+	 font-size: 2.125rem;
+}
+ .blog-post .blog-post-body h2 {
+	 font-size: 2rem;
+}
+ .blog-post .blog-post-body h3 {
+	 font-size: 1.75rem;
+}
+ .blog-post .blog-post-body h4 {
+	 font-size: 1.5rem;
+}
+ .blog-post .blog-post-body h5 {
+	 font-size: 1.25rem;
+}
+ .blog-post .blog-post-body h6 {
+	 font-size: 1.125rem;
+}
+
+ .blog-post .image-caption {
+	 color: #8f8f8f;
+	 font-size: 0.875rem;
+}
+ .blog-post .image-caption a {
+	 color: #8f8f8f;
+	 text-decoration: underline;
+}
+ .blog-post .image-caption a:hover {
+	 color: #4f4f4f;
+}
+ .blog-post .blockquote {
+	 font-family: Georgia, "Times New Roman", Times, serif;
+	 border-left: 2px solid #292929;
+	 font-size: 1.5rem;
+}
+ .blog-post .blockquote p {
+	 font-size: 1.5rem;
+}
+
+ hr.solid {
+    border-top: 4px solid #999;
+}
+
+#article-detail-image {
+    max-width: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    height: 500px !important;
+}
+
+.dash-article {
+    padding-right: 50px!important;
+	padding-left: 50px!important;
+    box-shadow: 0px 0px 5px rgba(0,0,0,.1) !important;
+    border-bottom: 1px solid #eee !important;
+    background: #fff !important;
+}

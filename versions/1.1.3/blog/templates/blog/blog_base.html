@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+
+    <!-- Favicon-->
+    <link rel="icon" href="{% static 'blog/images/favicon.png' %}"
+          type="image/gif" sizes="16x16">
+
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Williano">
+    <meta name="keywords" content="Blog, Django-Blog, Django-app">
+
+    <!-- Title -->
+    <title>BONA | {% block title %}{% endblock title %}</title>
+
+	<!-- Font and Font-awesome -->
+    <link href="{% static 'blog/css/common-css/fontawesome-free/css/all.min.css' %}"
+          rel="stylesheet"  type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+          rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          rel="stylesheet">
+
+    <!-- Stylesheets -->
+	{% block stylesheet %}
+       <!-- Bootstrap select -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.10/dist/css/bootstrap-select.min.css">
+	<link href="{% static 'blog/css/common-css/bootstrap.css' %}" rel="stylesheet">
+	<link href="{% static 'blog/css/common-css/swiper.css' %}" rel="stylesheet">
+	<link href="{% static 'blog/css/common-css/ionicons.css' %}" rel="stylesheet">
+	<link href="{% static 'blog/css/bona/styles.css' %}" rel="stylesheet">
+	<link href="{% static 'blog/css/bona/responsive.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'dashboard/author/css/prism.css' %}">
+
+    {% endblock stylesheet %}
+
+</head>
+<body >
+
+	<header>
+		<div class="container-fluid position-relative no-side-padding">
+
+			<a href="{% url 'blog:home' %}" class="logo">
+                <img src="{% static 'blog/images/logo.png' %}" alt="Logo Image"></a>
+
+			<div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
+
+			<ul class="main-menu visible-on-click" id="main-menu">
+{#				<li><a href="{% url 'blog:authors_list' %}">Authors</a></li>#}
+				<li><a href="{% url 'blog:categories_list' %}">Categories</a></li>
+                <li><a href="#">About</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'blog:dashboard_home' %}">Dashboard</a></li>
+                    <li><a href="{% url 'blog:logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'blog:login' %}">Login</a></li>
+                {% endif %}
+			</ul><!-- main-menu -->
+
+			<div class="src-area">
+				<form method="get" action="{% url 'blog:article_search_list_view' %}">
+					<button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
+					<input class="src-input" type="text" name="q" placeholder="Search for Articles">
+				</form>
+			</div>
+		</div><!-- conatiner -->
+	</header>
+
+
+   <!-- Messages -->
+      {% block messages %}
+       <div class="row">
+        <div class="col-md-12">
+            {% if messages %}
+                {% for message in messages %}
+                  <div class="text-center font-weight-bold alert alert-dismissible fade show
+                       {% if message.level_tag == 'error' %}
+                       alert-danger
+                       {% else %}
+                       alert-{{ message.tags }}
+                       {% endif %}">
+                    {{ message }}
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                {% endfor %}
+              {% endif %}
+        </div>
+      </div>
+      {% endblock messages %}
+
+    {% block content %}
+    {% endblock content %}
+
+
+{#    {% block footer %}#}
+{##}
+{#        <footer>#}
+{##}
+{#		<div class="container">#}
+{#			<div class="row">#}
+{##}
+{#				<div class="col-lg-4 col-md-6">#}
+{#					<div class="footer-section">#}
+{##}
+{#						<a class="logo" href="#">#}
+{#                            <img src="{% static 'blog/images/logo.png' %}"#}
+{#                                 alt="Logo Image"></a>#}
+{#						<p class="copyright">Bona @ 2018 - 2020. All rights reserved.</p>#}
+{##}
+{#						<ul class="icons">#}
+{#							<li><a href="#">#}
+{#                                <i class="ion-social-facebook-outline"></i>#}
+{#                               </a>#}
+{#                            </li>#}
+{#							<li><a href="#">#}
+{#                                <i class="ion-social-twitter-outline">#}
+{#                                </i>#}
+{#                                </a>#}
+{#                            </li>#}
+{#							<li><a href="#">#}
+{#                                <i class="ion-social-instagram-outline">#}
+{#                                </i>#}
+{#                                </a>#}
+{#                            </li>#}
+{#							<li><a href="#">#}
+{#                                <i class="ion-social-vimeo-outline">#}
+{#                                </i>#}
+{#                                </a>#}
+{#                            </li>#}
+{#							<li><a href="#">#}
+{#                                <i class="ion-social-pinterest-outline"></i>#}
+{#                                </a>#}
+{#                            </li>#}
+{#						</ul>#}
+{##}
+{#					</div><!-- footer-section -->#}
+{#				</div><!-- col-lg-4 col-md-6 -->#}
+{##}
+{#				<div class="col-lg-4 col-md-6">#}
+{#						<div class="footer-section">#}
+{#						<h4 class="title"><b>MENU</b></h4>#}
+{#						<ul>#}
+{#							<li><a href="{% url 'blog:login' %}">Login</a></li>#}
+{#							<li><a href="#">HEALTH</a></li>#}
+{#							<li><a href="#">MUSIC</a></li>#}
+{#						</ul>#}
+{#						<ul>#}
+{#                            <li><a href="{% url 'blog:register' %}">Sign Up</a></li>#}
+{#							<li><a href="#">DESIGN</a></li>#}
+{#							<li><a href="#">TRAVEL</a></li>#}
+{#						</ul>#}
+{#					</div><!-- footer-section -->#}
+{#				</div><!-- col-lg-4 col-md-6 -->#}
+{##}
+{#				<div class="col-lg-4 col-md-6">#}
+{#					<div class="footer-section">#}
+{##}
+{#						<h4 class="title"><b>SUBSCRIBE</b></h4>#}
+{#						<div class="input-area">#}
+{#							<form>#}
+{#								<input class="email-input" type="text"#}
+{#                                       placeholder="Enter your email">#}
+{#								<button class="submit-btn" type="submit">#}
+{#                                    <i class="icon ion-ios-email-outline"></i>#}
+{#                                </button>#}
+{#							</form>#}
+{#						</div>#}
+{##}
+{#					</div><!-- footer-section -->#}
+{#				</div><!-- col-lg-4 col-md-6 -->#}
+{##}
+{#			</div><!-- row -->#}
+{#		</div><!-- container -->#}
+{#	</footer>#}
+{##}
+{# {% endblock footer %}#}
+
+    <!-- SCRIPTS -->
+ {% block scripts %}
+
+	<script src="{% static 'blog/js/common-js/jquery-3.1.1.min.js' %}"></script>
+	<script src="{% static 'blog/js/common-js/tether.min.js' %}"></script>
+	<script src="{% static 'blog/js/common-js/bootstrap.js' %}"></script>
+    <script src="{% static 'blog/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+	<script src="{% static 'blog/js/common-js/swiper.js' %}"></script>
+	<script src="{% static 'blog/js/common-js/scripts.js' %}"></script>
+     <script src="{% static 'blog/js/blog/prism.js' %}"></script>
+
+ {% endblock scripts %}
+</body>
+</html>

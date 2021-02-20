@@ -1,0 +1,208 @@
+{% extends 'blog/blog_base.html' %}
+{% load static %}
+'
+{% block stylesheet %}
+    {{ block.super }}
+     <link href="{% static 'blog/css/bona/detail-page.css' %}" rel="stylesheet" />
+
+{% endblock stylesheet %}
+
+
+{% block title %}
+    {{ article.title }}
+{% endblock %}
+
+{% block content %}
+	<div class="slider" style="height: 400px; width: 100%;
+    background-image: url({{ article.category.image.url }});
+    background-size: contain" >
+	</div><!-- slider -->
+
+	<section class="post-area">
+		<div class="container">
+
+			<div class="row">
+
+				<div class="col-lg-1 col-md-0"></div>
+				<div class="col-lg-10 col-md-12">
+
+					<figure class="main-post">
+
+						<div class="post-top-area">
+
+							<h5 class="pre-title"><b>{{ article.category }}</b></h5>
+
+							<h3 class="title"><b>{{ article.title }}</b></h3>
+
+							<div class="post-info">
+
+								<div class="left-area">
+									<a class="avatar" href="{% url 'blog:author_articles' article.author.username %}">
+                                        <img src="{{ article.author.profile.image.url }}" alt="Profile Image" class="article-author-profile-image"></a>
+								</div>
+
+								<div class="middle-area">
+									By <a class="name" href="{% url 'blog:author_articles' article.author.username %}">
+                                        <b>{{ article.author.username }}</b></a>
+									<h6 class="date">on {{ article.date_published.date }}</h6>
+								</div>
+
+							</div><!-- post-info -->
+                           <div class="post-icons-area">
+								<ul class="post-icons">
+                                    <li><a><i class="ion-ios-paper"></i>{{ article.count_words }} word{{ article.count_words|pluralize }}</a></li>
+									<li><a><i class="ion-ios-clock"></i>{{ article.read_time }} min{{ article.read_time|pluralize }} read</a></li>
+									<li><a><i class="ion-chatbubbles"></i>{{ article.comments.count }} comment{{ article.comments.count|pluralize }}</a></li>
+									<li><a><i class="ion-eye"></i>{{ article.views }} view{{ article.views|pluralize }}</a></li>
+								</ul>
+
+								<ul class="icons">
+									<li>SHARE : </li>
+                                    <li>
+                                        <a href="mailto:?subject={{ article.title }}&amp;body=Check out this article {{ request.build_absolute_uri }}" target="_blank">
+                                        <i class="ion-android-mail"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}"  target="_blank">
+                                        <i class="ion-social-linkedin"></i>
+                                        </a>
+                                    </li>
+									<li>
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank">
+                                        <i class="ion-social-facebook"></i>
+                                        </a>
+                                    </li>
+									<li>
+                                        <a href="http://twitter.com/share?text={{ article.title }}. &url={{ request.build_absolute_uri }}" target="_blank">
+                                        <i class="ion-social-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://api.whatsapp.com/send?text={{ request.build_absolute_uri }}" target="_blank">
+                                            <i class="ion-social-whatsapp"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://telegram.me/share/url?url={{ request.build_absolute_uri }}&text={{ article.title }}" target="_blank">
+                                            <i class="fa fa-telegram"></i>
+                                        </a>
+                                    </li>
+								</ul>
+							</div>
+
+						</div><!-- post-top-area -->
+
+						<figure class="post-image"><img class="article-image" src="{{ article.image.url }}" alt="Blog Image">
+				       {% if article.image_credit %}
+                           <figcaption class="mt-2 text-center image-caption">
+                            (Image Credit: {{ article.image_credit}})
+                        </figcaption>
+                       {% endif %}
+                        </figure>
+
+						<div class="post-bottom-area">
+
+                        <!-- article body -->
+                            <p class="para">{{ article.body | safe }}</p>
+
+                        <!-- tags -->
+							<ul class="tags">
+                                {% for tag in article.tags.all %}
+								<li><a href="{% url 'blog:tag_articles' tag_name=tag.name %}">{{ tag.name }}</a></li>
+                                {% endfor %}
+							</ul>
+
+						</div><!-- post-bottom-area -->
+                    </figure>
+					</div><!-- main-post -->
+				</div><!-- col-lg-8 col-md-12 -->
+			</div><!-- row -->
+		</div><!-- container -->
+	</section><!-- post-area -->
+
+
+	<section class="recomended-area section">
+		<div class="container">
+        <h4><b>RELATED ARTICLES</b></h4>
+             {% if related_articles %}
+			<div class="row">
+            {% for related_article in related_articles %}
+				<div class="col-lg-4 col-md-6">
+					<div class="card h-100">
+						<div class="single-post post-style-1">
+
+							<div class="blog-image">
+                                <img src="{{ related_article.image.url }}"
+                                     width="330" height="220"
+                                     alt="Blog Image">
+                            </div>
+
+							<a class="avatar" href="{% url 'blog:author_articles' related_article.author.username %}">
+                                <img class="profile-image" src="{{ related_article.author.profile.image.url }}" alt="Profile Image"></a>
+
+							<div class="blog-info">
+
+								<h4 class="title"><a href="{{ related_article.get_absolute_url }}">
+                                    <b>{{ related_article.title }}</b></a></h4>
+
+								<ul class="post-footer">
+									<li><i class="ion-ios-clock"></i>{{ article.read_time }} min read</li>
+									<li><i class="ion-chatbubble"></i>{{ article.comments.count }}</li>
+									<li><i class="ion-eye"></i>{{ article.views }}</li>
+								</ul>
+
+							</div><!-- article-info -->
+						</div><!-- single-post -->
+					</div><!-- card -->
+				</div><!-- col-md-6 col-sm-12 -->
+             {% endfor %}
+			</div><!-- row -->
+             {% else %}
+                <div class="alert alert-warning"><b>No Related Articles</b></div>
+            {% endif %}
+		</div><!-- container -->
+	</section>
+
+	<section class="comment-section center-text">
+		<div class="container">
+			<h4><b>POST COMMENT</b></h4>
+			<div class="row">
+
+				<div class="col-lg-2 col-md-0"></div>
+
+				<div class="col-lg-8 col-md-12">
+					<div class="comment-form">
+						<form method="post" action="{% url 'blog:comment_create' article.slug %}">
+                            {% csrf_token %}
+							<div class="row">
+								<div class="col-sm-6">
+									{{ comment_form.name }}
+								</div><!-- col-sm-6 -->
+								<div class="col-sm-6">
+									{{ comment_form.email }}
+								</div><!-- col-sm-6 -->
+
+								<div class="col-sm-12">
+                                    {{ comment_form.comment }}
+								</div><!-- col-sm-12 -->
+								<div class="col-sm-12">
+									<button class="submit-btn" type="submit" id="form-submit"><b>POST COMMENT</b></button>
+								</div><!-- col-sm-12 -->
+
+							</div><!-- row -->
+						</form>
+					</div><!-- comment-form -->
+
+
+                    <a class="more-comment-btn" href="{% url 'blog:article_comments' article.slug %}">
+                        <b>SEE COMMENTS ({{ article.comments.count }})</b></a>
+
+				</div><!-- col-lg-8 col-md-12 -->
+
+
+			</div><!-- row -->
+
+		</div><!-- container -->
+	</section>
+{% endblock content %}

@@ -1,0 +1,198 @@
+{% extends 'dashboard/dashboard_base.html' %}
+{% load static %}
+
+{% block title %}
+    Profile Details
+{% endblock title %}
+
+{% block stylesheets %}
+     {{ block.super }}
+        <link href="{% static 'dashboard/author/css/dashboard.css' %}" rel="stylesheet" />
+{% endblock stylesheets %}
+
+
+{% block content %}
+
+     <div class="container mb-5">
+        <div class="row shadow-sm">
+            <div class="col-md-12 col-sm-12 col-xs-12 image-section">
+                <img alt="author-banner-image" src="{{ author_profile_details.profile.banner_image.url }}">
+            </div>
+            <div class="row user-left-part">
+                <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
+                    <div class="row ">
+                        <div class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center">
+                            <img alt="author-profile-image" src="{{ author_profile_details.profile.image.url }}" class="rounded-circle border border-dark shadow-sm">
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
+                            <a href="{% url 'blog:author_profile_update' %}" class="btn btn-success btn-block follow">
+                                <i class="fas fa-edit fa-sm fa-fw"></i>
+                                Update Profile</a>
+                            <!--<button class="btn btn-warning btn-block">Descargar Curriculum</button>-->
+                        </div>
+                        <div class="row user-detail-row">
+                            <div class="col-md-12 col-sm-12 user-detail-section2 pull-left">
+                                <div class="border"></div>
+                                <p class="text-dark">SOCIAL MEDIA</p>
+                                <span>
+                                    <a href="{{ author_profile_details.profile.facebook_url }}"><i class="fab fa-facebook"></i></a>
+                                    <a href="{{ author_profile_details.profile.twitter_url }}"><i class="fab fa-twitter"></i></a>
+                                    <a href="{{ author_profile_details.profile.instagram_url }}"><i class="fab fa-instagram"></i></a>
+                                    <a href="{{ author_profile_details.profile.github_url }}"><i class="fab fa-github"></i></a>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-12 pull-right profile-right-section">
+                    <div class="row profile-right-section-row">
+                        <div class="col-md-12 profile-header">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left">
+                                    {% if author_profile_details.first_name and author_profile_details.last_name %}
+                                    <h1>{{ author_profile_details.first_name }} {{ author_profile_details.last_name }}</h1>
+                                    {% else %}
+                                    <h1>{{ author_profile_details.username }}</h1>
+                                    {% endif %}
+
+                                    {% if  author_profile_details.profile.job_title %}
+                                    <h5>{{ author_profile_details.profile.job_title }}</h5>
+                                    {% else %}
+                                    <h5>No Profession/Job Title</h5>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-6 profile-header-section1 text-right pull-rigth">
+                                    <a href="{% url 'blog:home' %}" target="_blank" class="btn btn-primary btn-block">
+                                        <i class="fas fa-paper-plane fa-sm text-white-50"></i> Visit Website</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-8">
+                                        <ul class="nav nav-tabs" role="tablist">
+                                                <li class="nav-item">
+                                                  <a class="nav-link active mb-1" href="#profile" role="tab" data-toggle="tab"><i class="fas fa-user-circle"></i> Profile</a>
+                                                </li>
+                                                <li class="nav-item disabled">
+                                                  <a class="nav-link mb-1" href="#buzz" role="tab" data-toggle="tab"><i class="fas fa-info-circle"></i> Profile Details</a>
+                                                </li>
+                                              </ul>
+
+                                              <!-- Tab panes -->
+                                              <div class="tab-content">
+                                                <div role="tabpanel" class="tab-pane fade show active" id="profile">
+                                                        <div class="row mt-1">
+                                                                <div class="col-md-3">
+                                                                    <label class="font-italic text-dark">First Name</label>
+                                                                </div>
+                                                                <div class="col-md-9">
+                                                                    <p>{{ author_profile_details.first_name }}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <label class="font-italic text-dark">Last Name</label>
+                                                                </div>
+                                                                <div class="col-md-9">
+                                                                    <p>{{ author_profile_details.last_name }}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <label class="font-italic text-dark">Email</label>
+                                                                </div>
+                                                                <div class="col-md-9">
+                                                                    <p>{{ author_profile_details.email }}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <label class="font-italic text-dark">Location</label>
+                                                                </div>
+                                                                <div class="col-md-9">
+                                                                    {% if author_profile_details.profile.city and author_profile_details.profile.country %}
+                                                                    <p>{{ author_profile_details.profile.city }},
+                                                                        {{ author_profile_details.profile.country }}</p>
+                                                                    {% else %}
+                                                                    <p></p>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <label class="font-italic text-dark">Account Status</label>
+                                                                </div>
+                                                                <div class="col-md-9">
+                                                                    {% if author_profile_details.is_active %}
+                                                                    <p class="text-success">Active</p>
+                                                                    {% else %}
+                                                                    <p class="text-danger">Deactivated (Contact Admin to activate your Account)</p>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                </div>
+                                                <div role="tabpanel" class="tab-pane fade" id="buzz">
+                                                        <div class="row mt-1">
+                                                                <div class="col-md-4">
+                                                                    <label class="font-italic text-dark">Profession</label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <p>{{ author_profile_details.profile.job_title }}</p>
+                                                                </div>
+                                                            <div class="col-md-4">
+                                                                    <label class="font-italic text-dark">Biography</label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <p>{{ author_profile_details.profile.bio }}</p>
+                                                                </div>
+                                                            </div>
+                                                           <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="font-italic text-dark">Address</label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    {% if author_profile_details.profile.address and author_profile_details.profile.city and author_profile_details.profile.country %}
+                                                                    <p>{{ author_profile_details.profile.address }}, {{ author_profile_details.profile.city }},
+                                                                        {{ author_profile_details.profile.country }}</p>
+                                                                    {% else %}
+                                                                    <p></p>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="font-italic text-dark">Date Joined</label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <p>{{ author_profile_details.date_joined.date }}</p>
+                                                                </div>
+                                                            </div>
+                                                </div>
+
+                                              </div>
+
+                                </div>
+                                <div class="col-md-4 align-top">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row image-right-part">
+                                                <div class="col-md-6 pull-left image-right-detail">
+                                                    <h6 class="text-danger">LAST LOGIN</h6>
+                                                    <p><span class="font-weight-bold">Date:</span> {{ author_profile_details.last_login.date }}</p>
+                                                    <p><span class="font-weight-bold">Time:</span> {{ author_profile_details.last_login.time }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+
+{% endblock content %}

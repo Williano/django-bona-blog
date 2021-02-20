@@ -1,0 +1,196 @@
+{% extends 'dashboard/dashboard_base.html' %}
+{% load static %}
+{% load only_hours %}
+
+{% block title %}
+    Drafted Articles
+{% endblock title %}
+
+{% block stylesheets %}
+     {{ block.super }}
+        <link href="{% static 'dashboard/author/css/dashboard-article.css' %}" rel="stylesheet" />
+{% endblock stylesheets %}
+
+
+{% block content %}
+
+        <div class="page-header">
+            <div class="row align-items-end">
+                <div class="col-lg-8">
+                    <div class="page-header-title">
+                        <i class="ik ik-file-text bg-info"></i>
+                        <div class="d-inline">
+                            <h5>Drafted Articles</h5>
+                            <span>List of all your drafted articles.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                <div class="container mb-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                                <div class="card shadow-sm">
+                                    <div class="card-header">
+                                        <h4 class="title">List Of Drafted Articles</h4>
+                                    </div>
+                                  <div class="card-body">
+                                    <div class="content">
+                                     <section class="blog-list px-3 py-5 p-md-5">
+                                     {% if drafted_articles_list %}
+                                            <div class="container">
+                                           {% for article in drafted_articles_list  %}
+                                                <div class="item mb-5">
+                                                    <div class="media">
+                                                        <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="{{ article.image.url }}" alt="image">
+                                                        <div class="media-body">
+                                                            <h3 class="title mb-1"><a
+                                                                    href="{% url 'blog:dashboard_article_detail' slug=article.slug %}">{{ article.title }}</a></h3>
+                                                            <div class="meta mb-1">
+                                                                <span class="date"><b>Created:</b> <i>{{ article.date_created|timesince|upto:','}} ago</i></span>
+                                                                <span class="time">{{ article.count_words }} word{{ article.count_words|pluralize }}</span>
+                                                                <span class="time">{{ article.read_time }} min{{ article.read_time|pluralize }} read</span>
+                                                                <span class="time">
+                                                                <i class="fas fa-chevron-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                </i>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="{% url 'blog:article_update' slug=article.slug %}">Edit Article</a>
+                                                                    <div class="dropdown-divider w-100"></div>
+                                                                    <a data-toggle="modal" data-target="#publishModal"
+                                                                       class="dropdown-item" href="javascript:void(0)">Publish Article</a>
+                                                                    <div class="dropdown-divider w-100" ></div>
+                                                                    <a data-toggle="modal" data-target="#deleteModal"
+                                                                       class="dropdown-item" href="javascript:void(0)">Delete Article</a>
+                                                                </div>
+                                                              </span>
+                                                            </div>
+                                                            <a class="more-link" href="{% url 'blog:dashboard_article_detail' slug=article.slug %}">View details &rarr;</a>
+                                                       <hr class="solid"><!-- Solid divider -->
+                                                        </div><!--//media-body-->
+                                                    </div><!--//media-->
+                                                </div><!--//item-->
+
+                                              <!--Delete Modal-->
+                                                   <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+                                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                      <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                          <div class="modal-header">
+                                                              <h5 class="modal-title" id="exampleModalLabel"><b>Ready to Delete the Article?</b></h5>
+                                                            <button
+                                                              class="close"
+                                                              type="button"
+                                                              data-dismiss="modal"
+                                                              aria-label="Close"
+                                                            >
+                                                              <span aria-hidden="true">×</span>
+                                                            </button>
+                                                          </div>
+                                                          <div class="modal-body">
+                                                            Select "Delete Article" below if you want to delete the article.
+                                                          </div>
+                                                          <div class="modal-footer">
+                                                            <button
+                                                              class="btn btn-secondary"
+                                                              type="button"
+                                                              data-dismiss="modal"
+                                                            >
+                                                              Cancel
+                                                            </button>
+                                                            <a class="btn btn-danger" href="{% url 'blog:article_delete' slug=article.slug %}">Delete Article</a>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div> <!--//Delete Modal-->
+
+
+                                               <!--Publish Modal-->
+                                                   <div class="modal fade" id="publishModal" tabindex="-1" role="dialog"
+                                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                      <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                          <div class="modal-header">
+                                                              <h5 class="modal-title" id="exampleModalLabel"><b>Ready to Publish the Article?</b></h5>
+                                                            <button
+                                                              class="close"
+                                                              type="button"
+                                                              data-dismiss="modal"
+                                                              aria-label="Close"
+                                                            >
+                                                              <span aria-hidden="true">×</span>
+                                                            </button>
+                                                          </div>
+                                                          <div class="modal-body">
+                                                            Select "Publish Article" below if you want to delete the article.
+                                                          </div>
+                                                          <div class="modal-footer">
+                                                            <button
+                                                              class="btn btn-secondary"
+                                                              type="button"
+                                                              data-dismiss="modal"
+                                                            >
+                                                              Cancel
+                                                            </button>
+                                                            <a class="btn btn-primary" href="{% url 'blog:publish_article' slug=article.slug %}">Publish Article</a>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div> <!--//Publish Modal-->
+
+                                         {% endfor %}
+                                            </div>
+                                     {% else %}
+                                               <center><div class="alert alert-info"><b>No Drafted Articles</b></div></center>
+                                     {% endif %}
+                                        </section>
+
+
+                                                {# Pagination for article post #}
+                                        <nav aria-label="Page navigation example">
+                                        {% if drafted_articles_list.has_other_pages %}
+                                      <ul class="pagination justify-content-center">
+                                      {% if written_articles_list.has_previous %}
+                                        <li class="badge badge-pill badge-secondary">
+                                          <a class="badge text-white" href="?page={{ drafted_articles_list.previous_page_number }}"
+                                             tabindex="-1">Previous</a>
+                                        </li>
+                                      {% else %}
+                                        <li class="badge badge-pill badge-secondary disabled">
+                                         <span class="badge badge-pill badge-secondary">Previous</span>
+                                        </li>
+                                         {% endif %}
+                                        {% for i in drafted_articles_list.paginator.page_range %}
+                                        {% if drafted_articles_list.number == i %}
+                                            <li class="page-item active">
+                                          <span class="page-link">
+                                            {{ i }}
+                                            <span class="sr-only">(current)</span>
+                                          </span>
+                                        </li>
+                                    {% else %}
+                                       <li class="page-item">
+                                           <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                       </li>
+                                        {% endif %}
+                                        {% endfor %}
+                                        {% if drafted_articles_list.has_next %}
+                                            <li class="badge badge-pill badge-secondary">
+                                          <a class="badge text-white" href="?page={{ drafted_articles_list.next_page_number }}">Next</a>
+                                        </li>
+                                        {% else %}
+                                         <li class="badge badge-pill badge-secondary disabled">
+                                         <span class="badge badge-pill badge-secondary">Next</span>
+                                        </li>
+                                          {% endif %}
+                                      </ul>
+                                        {% endif %}
+                                    </nav>
+                                </div>
+                              </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+{% endblock content %}

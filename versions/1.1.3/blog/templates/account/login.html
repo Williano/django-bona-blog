@@ -1,0 +1,51 @@
+{% extends 'account/account_base.html' %}
+{% load static %}
+
+{% block title %}
+    Login
+{% endblock title %}
+
+{% block content %}
+
+
+
+				<span class="login100-form-title p-b-41">
+					Login
+				</span>
+				<form action="{% url 'blog:login' %}" class="login100-form validate-form p-b-33 p-t-5"
+                      method="post" novalidate>
+                    {% csrf_token %}
+
+					<div class="wrap-input100 validate-input" data-validate="Enter username">
+						{{ login_form.username }}
+						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						{{ login_form.password }}
+						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
+					</div>
+
+					<div class="container-login100-form-btn m-t-32">
+						<button type="submit" class="login100-form-btn">
+							Login
+						</button>
+                    </div>
+                    <hr />
+                    <div class="text-center">
+                      <a class="small text-info" href="{% url 'password_reset' %}">
+                          Forgot Password?</a>
+                    </div>
+                    <div class="text-center">
+                      <a class="small text-primary" href="{% url 'blog:register' %}"
+                        >Create an Account!</a>
+                    </div>
+                    <hr />
+                    <div class="text-center">
+                      <a class="small text-info" href="{% url 'blog:home' %}">
+                          Home
+                      </a>
+                    </div>
+				</form>
+
+{% endblock content %}

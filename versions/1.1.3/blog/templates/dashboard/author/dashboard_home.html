@@ -1,0 +1,206 @@
+{% extends 'dashboard/dashboard_base.html' %}
+{% load static %}
+{% load only_hours %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block stylesheets %}
+     {{ block.super }}
+        <link href="{% static 'dashboard/author/css/dashboard-article.css' %}" rel="stylesheet" />
+{% endblock stylesheets %}
+
+{% block content %}
+       <div class="container-fluid">
+                        <div class="row clearfix">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="widget">
+                                    <div class="widget-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="state">
+                                                <h6>Articles Written</h6>
+                                                <h2>{{ total_articles_written }}</h2>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ik ik-edit-2"></i>
+                                            </div>
+                                        </div>
+                                        <small class="text-small mt-10 d-block">Total Number Of Articles Written</small>
+                                    </div>
+                                    <div class="progress progress-sm">
+                                        <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="widget">
+                                    <div class="widget-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="state">
+                                                <h6>Published Articles</h6>
+                                                <h2>{{ total_articles_published }}</h2>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ik ik-layers"></i>
+                                            </div>
+                                        </div>
+                                        <small class="text-small mt-10 d-block">Total Number Of Articles Published</small>
+                                    </div>
+                                    <div class="progress progress-sm">
+                                        <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="widget">
+                                    <div class="widget-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="state">
+                                                <h6>Views</h6>
+                                                <h2>{{ total_articles_views }}</h2>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ik ik-eye"></i>
+                                            </div>
+                                        </div>
+                                        <small class="text-small mt-10 d-block">Total Views For All Articles</small>
+                                    </div>
+                                    <div class="progress progress-sm">
+                                        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="widget">
+                                    <div class="widget-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="state">
+                                                <h6>Comments</h6>
+                                                <h2>{{ total_articles_comments }}</h2>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ik ik-message-square"></i>
+                                            </div>
+                                        </div>
+                                        <small class="text-small mt-10 d-block">Total Comments For All Articles</small>
+                                    </div>
+                                    <div class="progress progress-sm">
+                                        <div class="progress-bar bg-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="page-header">
+                            <div class="row align-items-end">
+                                <div class="col-lg-8">
+                                    <div class="page-header-title">
+                                        <i class="ik ik-trending-up bg-success"></i>
+                                        <div class="d-inline">
+                                            <h5>Recent Published Articles</h5>
+                                            <span>List of your recently published articles.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <h1 class="h3 mb-0 text-gray-800"></h1>
+                                    <a
+                                      href="{% url 'blog:home' %}" target="_blank"
+                                      class="d-none d-sm-inline-block btn float-sm-right btn-sm btn-primary shadow-sm "
+                                      ><i class="fas fa-paper-plane fa-sm text-white-50 "></i> Visit Website</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+       <!-- Content Row -->
+         <div class="container mb-3">
+            <div class="row">
+                <div class="col-md-12">
+                        <div class="card shadow-sm">
+                            <div class="card-header">
+                                <h4 class="title">Recent Published Articles</h4>
+                            </div>
+                          <div class="card-body">
+                            <div class="content">
+                    <section class="blog-list px-3 py-5 p-md-5">
+                     {% if recent_published_articles_list %}
+                            <div class="container">
+                           {% for article in recent_published_articles_list  %}
+                                <div class="item mb-5">
+                                    <div class="media">
+                                        <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="{{ article.image.url }}" alt="image">
+                                        <div class="media-body">
+                                            <h3 class="title mb-1"><a href="{% url 'blog:dashboard_article_detail' slug=article.slug %}">{{ article.title }}</a></h3>
+                                            <div class="meta mb-1"><span class="date"><b>Published:</b>  <i>{{ article.date_published|timesince|upto:',' }} ago</i></span>
+                                                <span class="time">{{ article.count_words }} word{{ article.count_words|pluralize }}</span>
+                                                <span class="time">{{ article.read_time }} min{{ article.read_time|pluralize }} read</span>
+                                                <span class="comment">{{ article.views }} view{{ article.views|pluralize }}</span>
+                                                <span class="comment"><a href="#">{{ article.comments.count }} comment{{ article.comments.count|pluralize }}</a></span>
+                                                <span class="time">
+                                                <i class="fas fa-chevron-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                </i>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="{% url 'blog:article_update' slug=article.slug %}">Edit Article</a>
+                                                    <div class="dropdown-divider w-100" ></div>
+                                                    <a data-toggle="modal" data-target="#deleteModal" class="dropdown-item" href="javascript:void(0)">Delete Article</a>
+                                                </div>
+                                              </span>
+                                            </div>
+                                            <a class="more-link" href="{% url 'blog:dashboard_article_detail' slug=article.slug %}">View details &rarr;</a>
+                                          <hr class="solid"><!-- Solid divider -->
+                                        </div><!--//media-body-->
+                                    </div><!--//media-->
+                                </div><!--//item-->
+                                  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLabel"><b>Ready to Delete Article?</b></h5>
+                                            <button
+                                              class="close"
+                                              type="button"
+                                              data-dismiss="modal"
+                                              aria-label="Close"
+                                            >
+                                              <span aria-hidden="true">×</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            Select "Delete Article" below if you want to delete the article.
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button
+                                              class="btn btn-secondary"
+                                              type="button"
+                                              data-dismiss="modal"
+                                            >
+                                              Cancel
+                                            </button>
+                                            <a class="btn btn-danger" href="{% url 'blog:article_delete' slug=article.slug %}">Delete Article</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                </div>
+                         {% endfor %}
+                            </div>
+                     {% else %}
+                               <center><div class="alert alert-info"><b>No Published Articles</b></div></center>
+                     {% endif %}
+                        </section>
+
+                          </div>
+                  <!-- /.container-fluid -->
+                <!-- End of Main Content -->
+                          </div>
+                        </div>
+                </div>
+            </div>
+         </div>
+     </div>
+
+
+
+{% endblock content %}
+

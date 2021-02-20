@@ -1,0 +1,193 @@
+{% extends 'dashboard/dashboard_base.html' %}
+{% load static %}
+
+{% block title %}
+    Update Profile
+{% endblock title %}
+
+{% block stylesheets %}
+     {{ block.super }}
+        <link href="{% static 'dashboard/author/css/dashboard.css' %}" rel="stylesheet" />
+{% endblock stylesheets %}
+
+
+{% block content %}
+    <div class="page-header">
+        <div class="row align-items-end">
+            <div class="col-lg-8">
+                <div class="page-header-title">
+                    <i class="ik ik-file-text bg-blue"></i>
+                    <div class="d-inline">
+                        <h5>Profile Update</h5>
+                        <span>Update your profile.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+         <div class="container mb-3">
+            <div class="row">
+                <div class="col-md-12">
+                        <div class="card shadow-sm">
+                            <div class="card-header">
+                                <h4 class="title">Update Profile</h4>
+                            </div>
+                          <div class="card-body">
+                            <div class="content">
+                                <form method="post" action="{% url 'blog:author_profile_update' %}" enctype="multipart/form-data" novalidate>
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Username</label>
+                                                <h6>{{ contact_form.username.errors }}</h6>
+                                                {{ user_form.username }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="email">Email address</label>
+                                                <h6>{{ contact_form.email.errors }}</h6>
+                                                {{ user_form.email }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Job Title</label>
+                                                <h6>{{ contact_form.job_title.errors }}</h6>
+                                                {{ profile_form.job_title }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>First Name</label>
+                                                <h6>{{ contact_form.first_name.errors }}</h6>
+                                                {{ user_form.first_name }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Last Name</label>
+                                                <h6>{{ contact_form.last_name.errors }}</h6>
+                                                {{ user_form.last_name }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                <h6>{{ contact_form.address.errors }}</h6>
+                                                {{ profile_form.address }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Profile Image</label>
+                                                <div>
+                                                    <span class="text-danger">Current image:</span>
+                                                    <a href="{{ user.profile.image.url }}">
+                                                {{ user.profile.image.url }}</a><br>
+                                                </div>
+                                                <h6>{{ contact_form.image.errors }}</h6>
+                                                {{ profile_form.image }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Profile Banner</label>
+                                                <div>
+                                                    <span class="text-danger">Current banner:</span>
+                                                    <a href="{{ user.profile.banner_image.url }}">
+                                                {{ user.profile.banner_image.url }}</a><br>
+                                                </div>
+                                                <h6>{{ contact_form.banner_image.errors }}</h6>
+                                                {{ profile_form.banner_image }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>City</label>
+                                                <h6>{{ contact_form.city.errors }}</h6>
+                                                {{ profile_form.city }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Country</label>
+                                                <h6>{{ contact_form.country.errors }}</h6>
+                                                {{ profile_form.country }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Postal Code</label>
+                                                <h6>{{ contact_form.zip_code.errors }}</h6>
+                                                {{ profile_form.zip_code }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>About Me</label>
+                                                <h6>{{ contact_form.bio.errors }}</h6>
+                                                {{ profile_form.bio }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                 <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Facebook Account Url</label>
+                                                <h6>{{ contact_form.facebook_url.errors }}</h6>
+                                                {{ profile_form.facebook_url }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Twitter Account Url</label>
+                                                <h6>{{ contact_form.twitter_url.errors }}</h6>
+                                                {{ profile_form.twitter_url }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Instagram Account Url</label>
+                                                <h6>{{ contact_form.instagram_url.errors }}</h6>
+                                                {{ profile_form.instagram_url }}
+                                            </div>
+                                        </div>
+                                     <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Github Account Url</label>
+                                                <h6>{{ contact_form.github_url.errors }}</h6>
+                                                {{ profile_form.github_url }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-info btn-fill float-right">Update Profile</button>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+{% endblock content %}

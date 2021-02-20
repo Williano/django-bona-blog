@@ -1,0 +1,9 @@
+footer {
+    padding: 70px 0 30px;
+    background: #fff;
+    max-width: 100%;
+     position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}

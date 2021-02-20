@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+           <!-- Favicon-->
+    <link rel="icon" href="{% static 'blog/images/favicon.png' %}"
+          type="image/gif" sizes="16x16">
+
+    <title>Bona | {% block title %}{% endblock title %}</title>
+
+  {% block stylesheet %}
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css"
+              href="{%  static 'account/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css"
+              href="{%  static 'account/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css"
+              href="{%  static 'account/fonts/Linearicons-Free-v1.0.0/icon-font.min.css'%}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css"
+              href="{%  static 'account/vendor/animate/animate.css'%}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css"
+              href="{%  static 'account/vendor/css-hamburgers/hamburgers.min.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{%  static 'account/vendor/animsition/css/animsition.min.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{%  static 'account/vendor/select2/select2.min.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{%  static 'account/vendor/daterangepicker/daterangepicker.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{%  static 'account/css/util.css' %}">
+        <link rel="stylesheet" type="text/css" href="{%  static 'account/css/main.css' %}">
+    <!--===============================================================================================-->
+  {% endblock stylesheet %}
+
+  </head>
+
+  <body>
+    <div class="limiter">
+		<div class="container-login100" style="background-image: url('/static/account/images/bg-6.jpg');">
+            <div class="wrap-login100 p-t-30 p-b-50">
+
+            {% block messages %}
+                        {% if messages %}
+                            {% for message in messages %}
+                              <div class="text-center font-weight-bold alert alert-dismissible fade show
+                                   {% if message.level_tag == 'error' %}
+                                   alert-danger
+                                   {% else %}
+                                   alert-{{ message.tags }}
+                                   {% endif %}">
+                                {{ message }}
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                 </button>
+                              </div>
+                            {% endfor %}
+                          {% endif %}
+      {% endblock messages %}
+
+
+      {% block content %}
+
+      {% endblock content %}
+
+             </div>
+        </div>
+    </div>
+        <div id="dropDownSelect1"></div>
+
+  {% block script %}
+
+    <!--===============================================================================================-->
+        <script src="{%  static 'account/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+    <!--===============================================================================================-->
+        <script src="{%  static 'account/vendor/animsition/js/animsition.min.js' %}"></script>
+    <!--===============================================================================================-->
+        <script src="{%  static 'account/vendor/bootstrap/js/popper.js' %}"></script>
+        <script src="{%  static 'account/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <!--===============================================================================================-->
+        <script src="{%  static 'account/vendor/select2/select2.min.js' %}"></script>
+    <!--===============================================================================================-->
+        <script src="{%  static 'account/vendor/daterangepicker/moment.min.js' %}"></script>
+        <script src="{%  static 'account/vendor/daterangepicker/daterangepicker.js'%}"></script>
+    <!--===============================================================================================-->
+        <script src="{%  static 'account/vendor/countdowntime/countdowntime.js' %}"></script>
+    <!--===============================================================================================-->
+        <script src="{%  static 'account/js/main.js' %}"></script>
+
+  {% endblock script %}
+
+  </body>
+
+</html>

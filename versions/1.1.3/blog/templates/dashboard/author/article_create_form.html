@@ -1,0 +1,81 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load static %}
+
+{% block title %}
+    Create Article
+{% endblock title %}
+
+{% block stylesheets %}
+     {{ block.super }}
+        <link href="{% static 'dashboard/author/css/dashboard.css' %}" rel="stylesheet" />
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+        <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="content-section">
+
+            <div class="card shadow-sm mb-3 w-100">
+
+            <h4 class="card-header">Write A New Article</h4>
+
+            <div class="card-body">
+                    <form method="POST" action="{% url 'blog:article_write' %}" id="articleForm" enctype="multipart/form-data"
+                          novalidate>
+                        {% csrf_token %}
+                              <div class="form-group">
+                                <label for="articleTitle">Article Title*</label>
+                                    <h6 class="text-danger">{{ article_create_form.title.errors }}</h6>
+                                    {{ article_create_form.title }}
+                              </div>
+                              <div class="form-group">
+                                <label for="articleCategory">Select Category*</label>
+                                  <h6 class="text-danger">{{ article_create_form.category.errors }}</h6>
+                                    {{ article_create_form.category }}
+                              </div>
+                              <div class="form-group">
+                                <label for="articleImage">Upload Article Image*</label>
+                                  <h6 class="text-danger">{{ article_create_form.image.errors }}</h6>
+                                    {{ article_create_form.image }}
+                              </div>
+                              <div class="form-group">
+                                <label for="image_credit">Image Credit</label>
+                                    <h6 class="text-danger">{{ article_create_form.image_credit.errors }}</h6>
+                                    {{ article_create_form.image_credit }}
+                              </div>
+                              <div class="form-group">
+                                  <label for="article-content">Content*</label>
+                                  <h6 class="text-danger">{{ article_create_form.body.errors }}</h6>
+                                  {{ article_create_form.body }}
+                              </div>
+                              <div class="form-group">
+                                <label for="articleTags">Enter Tags*</label>
+                                  <h6 class="text-danger">{{ article_create_form.tags.errors }}</h6>
+                                   {{ article_create_form.tags }}
+
+                              <small id="hint_id_tags" class="form-text text-muted">
+                                  A comma-separated list of tags.</small>
+                              </div>
+                              <div class="form-group">
+                                <label for="articleImage">Status*</label>
+                                  <h6 class="text-danger">{{ article_create_form.status.errors }}</h6>
+                                   {{ article_create_form.status }}
+                              </div>
+                            <div class="form-group float-right">
+                                <button type="reset" class="btn btn-danger">Reset Form</button>
+                                <button class="btn btn-dark" name="action"
+                                        value="SAVE_AS_DRAFT" type="submit">SAVE AS DRAFT</button>
+
+                                <button class="btn btn-primary" name="action" value="PUBLISH"
+                                        type="submit">PUBLISH</button>
+                            </div>
+                    </form>
+            </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
