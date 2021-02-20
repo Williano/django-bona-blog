@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.1.4
+-----
+- Fix article create image upload error
+- Fix article update image upload error
+
 1.1.3
 -----
 - Fix CSS errors
